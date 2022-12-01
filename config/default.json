@@ -1,9 +1,7 @@
 {
   "mongoURI": "mongodb+srv://Nhien:ayHqj0vnVTu1xu9x@cluster-mongo-test.jxsmzju.mongodb.net/RaoVat",
-  "jwtSecret": "mysecrettoken",
-  "vnp_TmnCode":"WWGCW7T5",
-  "vnp_HashSecret":"SVARNZMLYLXGVZEPYDOIPAIOIZSNPDOV",
-  "vnp_Url":"https://sandbox.vnpayment.vn/paymentv2/vpcpay.html",
-  "vnp_ReturnUrl": "http://localhost:3000/vnpay_return"
+  "jwtSecret": "mysecrettoken"
+ 
 
 }
+

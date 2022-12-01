@@ -9,26 +9,27 @@ const User = require("../../models/User");
 // @route   Get api/bikes
 // @desc    Create a bike
 // @access  Private
-const updateStatus = async (req, res) => {
-  const bike = Bike.findById(req.params.id);
-  try {
-    if (id) {
-      const response = await updateStatus(id, data)
-      if (response)
-      return res.json(response)
-      
-    } else return res.json({
-      message: e,
-      status: "err"
-    })
-  } catch (e) {
-    return res.json({
-      message: e,
-      status: "err"
-    })
+// const updateStatus = async (req, res) => {
+//   const bike = Bike.findById(req.params.id);
+//   try {
+//     if (id) {
+//       const response = await updateStatus(id, data)
+//       if (response)
+//       return res.json(response)
 
-  }
-}
+//     } else return res.json({
+//       message: e,
+//       status: "err"
+//     })
+//   } catch (e) {
+//     return res.json({
+//       message: e,
+//       status: "err"
+//     })
+
+//   }
+// }
+
 router.post(
   "/",
   [
@@ -52,9 +53,9 @@ router.post(
       check("tinhtrang", "Tinh trang is required")
         .not()
         .isEmpty(),
-      check("date1", "Ngay dang is required")
-        .not()
-        .isEmpty(),
+      // check("date1", "Ngay dang is required")
+      //   .not()
+      //   .isEmpty(),
       // check("costEdit", "Chi phi is required")
       //   .not()
       //   .isEmpty(),
@@ -96,24 +97,33 @@ router.post(
     }
   }
 );
-// router.put("/status/:id", auth, async (req, res) => {
-//   try {
-//     const bike = await Bike.findById(req.params.id);
-//     //Check if the post has already liked
-//     if (
+// Patch Status
+router.patch("/:id", async (req, res) => {
+  try {
+    const bike = await Bike.findById(req.params.id);
+    //Check status
+    if (bike)
+    // bike.status==="Chưa duyệt")
+    {
 
-//       bike.likes.filter(like => like.user.toString() == req.user.id).length > 0  ) {
-//       return res.status(400).json({ msg: "Bike already like" });
-//     }
-//     bike.likes.unshift({ user: req.user.id });
-//     await bike.save();
-
-//     res.json(bike.likes);
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).send("Server Error");
-//   }
-// });
+      // console.log('>>>>>>>>>>>>>>>>>>>test');
+      // console.log('>>>>>bike', bike.price);
+      // console.log('status', bike.status);
+      bike.status="Đã duyệt";
+      // console.log('ssssss', bike.status);
+      // console.log('>>>>>bike', bike);
+    }
+    // return res.json(bike.status);
+    // bike.likes.unshift({ user: req.user.id });
+    await bike.save();
+    // console.log('>>> bike check:', bike)
+    console.log(bike.status);
+    res.json(bike.status);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 //NOTE  GET all bike
 // @route   Get api/bikes
 // @desc    Get all bike
@@ -196,7 +206,7 @@ router.put("/like/:id", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-router.patch("/status/:id", updateStatus)
+// router.patch("/status/:id",z updateStatus)
 
 // try {
 //   const bike = await Bike.findById(req.params.id);
