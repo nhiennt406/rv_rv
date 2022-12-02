@@ -21,7 +21,7 @@ const FashionSingleItem = ({
     phone,
     address,
     description,
-    brand,
+    size,
     tinhtrang
   }
 }) => {

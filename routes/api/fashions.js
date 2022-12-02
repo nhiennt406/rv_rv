@@ -28,15 +28,13 @@ router.post(
       check("description", "Description is required")
         .not()
         .isEmpty(),
-      check("brand", "Brand is required")
-        .not()
-        .isEmpty(),
+     
       check("tinhtrang", "Tinh trang is required")
         .not()
         .isEmpty(),
-        check("date1", "Ngay dang is required")
-        .not()
-        .isEmpty(),
+        // check("date1", "Ngay dang is required")
+        // .not()
+        // .isEmpty(),
     ]
   ],
   async (req, res) => {
@@ -48,7 +46,8 @@ router.post(
       const user = await User.findById(req.user.id).select("-password");
       const newFashion = new Fashion({
         text: req.body.text,
-        brand: req.body.brand,
+        size: req.body.size
+        ,
         tinhtrang: req.body.tinhtrang,
         img: req.body.img,
         price: req.body.price,
@@ -58,9 +57,12 @@ router.post(
         phone: req.body.phone,
         address: req.body.address,
         description: req.body.description,
+       
         name: user.name,
         avatar: user.avatar,
-        user: req.user.id
+        
+        user: req.user.id,
+        status: "Chưa duyệt"
       });
       const fashion = await newFashion.save();
       res.json(fashion);
@@ -79,6 +81,33 @@ router.get("/", async (req, res) => {
   try {
     const fashions = await Fashion.find().sort({ date: -1 });
     res.json(fashions);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+// Patch Status
+router.patch("/:id", async (req, res) => {
+  try {
+    const fashion = await Fashion.findById(req.params.id);
+    //Check status
+    if (fashion)
+    // bike.status==="Chưa duyệt")
+    {
+
+      // console.log('>>>>>>>>>>>>>>>>>>>test');
+      // console.log('>>>>>bike', bike.price);
+      // console.log('status', bike.status);
+      fashion.status="Đã duyệt";
+      // console.log('ssssss', bike.status);
+      // console.log('>>>>>bike', bike);
+    }
+    // return res.json(bike.status);
+    // bike.likes.unshift({ user: req.user.id });
+    await fashion.save();
+    // console.log('>>> bike check:', bike)
+    console.log(fashion.status);
+    res.json(fashion.status);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -109,16 +138,16 @@ router.get("/:id", async (req, res) => {
 // @route   DELETE api/bikes/:id
 // @desc    Delete a bike
 // @access  Private
-router.delete("/:id", auth, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const fashion = await Fashion.findById(req.params.id);
     if (!fashion) {
       return res.status(404).json({ msg: "Fashion not found" });
     }
     // Check user
-    if (fashion.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "User not authorized" });
-    }
+    // if (fashion.user.toString() !== req.user.id) {
+    //   return res.status(401).json({ msg: "User not authorized" });
+    // }
     await fashion.remove();
     res.json({ msg: "Fashion Remove" });
   } catch (err) {

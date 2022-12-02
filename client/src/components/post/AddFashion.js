@@ -9,21 +9,25 @@ import TextEditor from "./TextEditor";
 import { createBike } from "../../actions/bike";
 import { DatePicker, Space } from 'antd';
 import moment from 'moment';
+import PayBtn from "../pages/PayBtn"
 // import 'antd.css';
 
 // const { DatePicker } = antd;
 const { RangePicker } = DatePicker;
 const dateFormat = 'YYYY-MM-DD';
-const AddFashion = ({ createFashion }) => {
+const AddFashion = (
+  // { createFashion }
+  ) => {
   const [formData, setFormData] = useState({
     text: "",
-    brand: "",
+    size: "",
     tinhtrang: "",
     price: "",
     phone: "",
     address: "",
     description: "",
     img: "",
+    
     // date: "",
     cost: "",
     date1: "",
@@ -36,15 +40,17 @@ const AddFashion = ({ createFashion }) => {
     phone,
     address,
     description,
-    brand,
+    size,
     tinhtrang,
-    date,
+    date1,
     cost
   } = formData;
   const onChange = e => {
     const costTemp = e.target.value * formData.costEdit;
-
+    formData.status = "Chưa duyệt";
     formData.cost = costTemp;
+    localStorage.setItem("datane", JSON.stringify(formData));
+    
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -55,7 +61,7 @@ const AddFashion = ({ createFashion }) => {
   // let DateNe =new Date();
   const onSubmit = e => {
     e.preventDefault();
-    createFashion(formData);
+    // createFashion(formData);
   };
   const handleFiles = files => {
     setFormData({
@@ -150,7 +156,9 @@ const AddFashion = ({ createFashion }) => {
                         placeholder="Số điện thoại của bạn"
                       />
                     </div>
+                    
                   </div>
+                
                   <div className="field">
                     <label>
                       <i className="phone icon"></i> Tình trạng thời trang
@@ -213,8 +221,8 @@ const AddFashion = ({ createFashion }) => {
                     </label>
                     <div className="ui input">
                       <TextArea
-                        value={brand}
-                        name="brand"
+                        value={size}
+                        name="size"
                         onChange={e => onChange(e)}
                         type="text"
                         placeholder="Size sản phẩm"
@@ -267,21 +275,21 @@ const AddFashion = ({ createFashion }) => {
                   </label>
                   <div className="ui input">
                     <NumberFormat
-                      // thousandSeparator={true}
+                      thousandSeparator={true}
                       value={formData.cost}
                       name="cost"
                       // onChange={e => onChange(e)}
-                      // placeholder={'cost'}
+                      // // placeholder={'cost'}
                       prefix={"$"}
                       disabled
                     />
 
                   </div>
                 </div>
-                <button type="submit" className="ui button">
+                {/* <button type="submit" className="ui button">
                   Đăng bài
-                </button>
-
+                </button> */}
+                <PayBtn BikeItem={formData} />
                 <Link to="/fashion" className="ui primary basic button">
                   Chuyển đến trang rao vặt thời trang
                 </Link>
@@ -302,4 +310,5 @@ const AddFashion = ({ createFashion }) => {
   );
 };
 
-export default connect(null, { createFashion })(withRouter(AddFashion));
+export default AddFashion;
+// connect(null, { createFashion })(withRouter(AddFashion));

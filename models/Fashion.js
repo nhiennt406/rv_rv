@@ -25,11 +25,14 @@ const FashionSchema = new Schema({
   cost: {
     type: String
   },
+  status:{
+    type:String
+  },
   phone: {
     type: String,
     required: true
   },
-  brand: {
+  size: {
     type: String,
     required: true
   },

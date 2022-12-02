@@ -28,9 +28,9 @@ router.post(
       check("description", "Description is required")
         .not()
         .isEmpty(),
-      // check("date1", "Ngay dang is required")
-      //   .not()
-      //   .isEmpty(),
+      check("brand", "Brand is required")
+        .not()
+        .isEmpty(),
     ]
   ],
 
