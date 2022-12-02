@@ -25,6 +25,9 @@ const PostSchema = new Schema({
   cost: {
     type: String
   },
+  status:{
+    type:String
+  },
   social: {
     type: String
   },

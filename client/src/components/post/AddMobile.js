@@ -5,8 +5,10 @@ import { createPost } from "../../actions/post";
 import NumberFormat from "react-number-format";
 import ReactFileReader from "react-file-reader";
 import { Grid } from "semantic-ui-react";
-
-const AddMobile = ({ createPost }) => {
+import PayBtn from "../pages/PayBtn"
+const AddMobile = (
+  // { createPost }
+  ) => {
   const [formData, setFormData] = useState({
     text: "",
     social: "",
@@ -15,22 +17,25 @@ const AddMobile = ({ createPost }) => {
     address: "",
     description: "",
     img: "", date1:"", cost:"",
+    status: "Chưa duyệt",
     costEdit:3000,
   });
-  const { text,date1, cost, costEdit, img, price, phone, address, description, social } = formData;
+  const { text,date1, cost, costEdit, img, price, phone, address, description, social,status } = formData;
   const onChange = e => {
     const costTemp = e.target.value * formData.costEdit;
-
+    formData.status = "Chưa duyệt";
     formData.cost = costTemp;
+    localStorage.setItem("datane", JSON.stringify(formData));
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      // {localStorage.setItem("datane", JSON.stringify(formData))}
     });
   };
 
   const onSubmit = e => {
     e.preventDefault();
-    createPost(formData);
+    // createPost(formData);
   };
   const handleFiles = files => {
     setFormData({ 
@@ -203,10 +208,10 @@ const AddMobile = ({ createPost }) => {
 
                   </div>
                 </div>
-                <button type="submit" className="ui button">
+                {/* <button type="submit" className="ui button">
                   Đăng bài
-                </button>
-
+                </button> */}
+    <PayBtn BikeItem={formData} />
                 <Link to="/mobile" className="ui primary basic button">
                   Chuyển đến trang rao vặt điện thoại
                 </Link>
@@ -223,4 +228,5 @@ const AddMobile = ({ createPost }) => {
   );
 };
 
-export default connect(null, { createPost })(withRouter(AddMobile));
+export default AddMobile
+// connect(null, { createPost })(withRouter(AddMobile));

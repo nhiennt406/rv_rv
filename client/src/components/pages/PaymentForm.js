@@ -1,12 +1,13 @@
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
+import { CardElement, PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import axios from "axios"
 import React, { useState } from 'react'
 import { Elements } from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
+
 import { createBike } from "../../actions/bike";
-import { Button, Modal } from 'semantic-ui-react'
+import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 import BikeItem from '../bike/BikeItem'
-import ModalN from "../ModalN"
+
 const PUBLIC_KEY = "pk_test_51M7zRhBbJjfukPr45AM4xY9GbR6BbhToF4w2AO35u3ShMCrzy1EtibG0ymXo0e4MS8gz4vouCEqUUModv9HGZmeY004W3f34a8"
 
 const stripeTestPromise = loadStripe(PUBLIC_KEY)
@@ -36,23 +37,20 @@ const kq = JSON.parse(localStorage.getItem("datane"));
 
 const priceTemp = kq.price;
 const tien = parseInt(kq.cost, 10) * 100;
-const onSubmit = e => {
-    e.preventDefault();
-    createBike(kq);
-};
+// const onSubmit = e => {
+//     e.preventDefault();
+//     createBike(kq);
+// };
 
-//   function ModalN() {
-//     return(
-//     <Modal
-//     trigger={<Button>Show Modal</Button>}
-//     header='Reminder!'
-//     content='Call Benjamin regarding the reports.'
-//     actions={['Snooze', { key: 'done', content: 'Done', positive: true }]}
-//   />
-//     )
-//   } export default ModalN();
+const testClick = () => {
+    console.log("đã click rồi đó")
+
+}
+
+
 export default function PaymentForm() {
     const [success, setSuccess] = useState(false)
+    const [opened, setOpened] = useState(false);
     const stripe = useStripe()
     const elements = useElements()
     const config = {
@@ -63,11 +61,13 @@ export default function PaymentForm() {
     console.log("data đó bà :", priceTemp);
     console.log(kq);
     console.log(tien);
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: "card",
             card: elements.getElement(CardElement)
+            // payment: elements.getElement(PaymentElement)
         })
 
 
@@ -83,7 +83,24 @@ export default function PaymentForm() {
                     setSuccess(true)
                     console.log(`response`);
                     console.log(response)
-                    const res = await axios.post("http://localhost:5000/api/bikes", kq, config)
+                    try { const res = await axios.post(`http://localhost:5000/api/bike`, kq, config) }
+                    catch {
+                        try { const res = await axios.post("http://localhost:5000/api/posts", kq, config) }
+                        catch{  
+                            try { const res = await axios.post("http://localhost:5000/api/fashions", kq, config) }
+                            catch{
+                                // try{
+                                    // const res= await axios.post(`http://localhost:5000/api/fashions`,kq,config)
+                                // }catch{ console.log("thêm dô chớ sao")
+                                    // try{
+                                    //     // const res =await axios.post(`http://loaclhost`)
+                                    // }catch{
+
+                                    // }
+                                // }
+                            }
+                        }
+                }
                 }
 
             } catch (error) {
@@ -92,44 +109,72 @@ export default function PaymentForm() {
         } else {
             console.log(error.message)
         }
-        // createBike(kq);
-
-        // const res = await axios.post("/api/bikes", formData, config);
-
     }
-
-
     return (
         <>
 
             {kq.price}
-
-            {/* <Elements stripe={stripeTestPromise}> */}
             {!success ?
+                <div>
+                    <form onSubmit={handleSubmit}>
+                        Tổng tiền cần thanh Toán<br />
+                        {kq.cost}
+                        <fieldset className="FormGroup">
+                            <center>THÔNG TIN TÀI KHOẢN THANH TOÁN </center>
+                            <div className="FormRow">
 
-                <form onSubmit={handleSubmit}>
-                    Tổng tiền cần thanh Toán<br />
-                    {kq.cost}
-                    <fieldset className="FormGroup">
-                        <center>THÔNG TIN TÀI KHOẢN THANH TOÁN </center>
-                        <div className="FormRow">
-                            <CardElement options={CARD_OPTIONS} />
-                        </div>
-                    </fieldset>
-                   
-                    <button type="submit"
-                    >Pay</button>
- <Button >
-                        {/* Hủy */}
+                                <CardElement options={CARD_OPTIONS} />
+                                {/* <PaymentElement options={CARD_OPTIONS}/> */}
+                            </div>
+                        </fieldset>
+                        <button type="submit"
+                        >Pay</button>
+                        <button onClick={() => setOpened(true)}
+                        >Hủy</button>
+                    </form>
+                    <Modal size="mini"
+                        open={opened}
+                        onClose={() => setOpened(false)}
+                        closeOnDimmerClick={false}
+                        closeOnEscape={false}
+                        closeOnClickOutside={false}
+                        disableEnforceFocus
+                    // backdrop='static'
+                    // keyboard= {true}
+                    >
+                        <Header icon>
+                            <Icon name='exclamation triangle' color="red" />
+                            Cảnh báo
+                        </Header>
+                        <Modal.Content>
+                            <p >
+                                <center>
+                                    Bạn sẽ đăng tin thất bại nếu không thanh toán <br />
+                                    Bạn có chắn chắc hủy chứ?
+                                </center>
+                            </p>
+                        </Modal.Content>
+                        <Modal.Actions>
+                            <Button color='green' inverted onClick={() => setOpened(false)}>
+                                <Icon name='checkmark' /> Tiếp tục thanh toán
+                            </Button>
+                            <Button basic color='red' inverted href="http://localhost:3000" onClick={() => setOpened(false)}>
+                                <Icon name='remove' />
 
-                        <ModalN />
-                    </Button>
-                </form>
+                                Hủy
+                            </Button>
+
+                        </Modal.Actions>
+                    </Modal>
+                </div>
+
                 :
                 <div>
                     <h2>Thanh Toán Thành Công rồi đó bà dà</h2>
                 </div>
             }
+
+
             {/* </Elements> */}
         </>
     )

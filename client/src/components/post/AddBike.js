@@ -7,8 +7,7 @@ import ReactFileReader from "react-file-reader";
 import { Button, Grid, ItemExtra, TextArea } from "semantic-ui-react";
 import TextEditor from "./TextEditor";
 import PayBtn from "../pages/PayBtn";
-// const [isModalVisiblePayment, setIsModalVisiblePayment] = useState(false);
-// import { TextareaAutosize } from '@mui/base';
+
 const AddBike = (
   // { createBike }
 ) => {
@@ -51,32 +50,10 @@ const AddBike = (
       window.location.href = "http://localhost:3000/payment";
     }
 
-    // const HandleOkPayment = async (is_vnpay) => {
-    //   // const arrayItem = bikes.map((item) => {
-    //   //   return { number_product: item.cost, product_id: item.id };
-    //   // });
-    //   // let confirmBillResp = await axio(
-    //   //   orderAddress,
-    //   //   arrayItem,
-    //   //   total_amount
-    //   // );
-    //   if (is_vnpay === true) {
-    //     // vnpay
-    //     let payment_url = await vnPayment(
-    //       // cost,
-    //       // parseInt(confirmBillResp.message)
-    //     );
-    //     window.location.href = payment_url;
-    //   }else{
-    //     window.location.href = "http://localhost:3000?isVNPaySuccess=true";
-    //   }
-    // };
-    // console.log('chi phi ne: ', formData.cost);
-    // console.log('mo ta: ', description);
-    // console.log('file: ', img);
-    // console.log('sl ngay đăng: ', date1);
-    // console.log('cp:', chiphi);
+   
     console.log('---------------------------');
+
+    console.log("date1:",formData.date1);
     // console.log('formdata:',formData);
     // const textk = "kkkk";
 

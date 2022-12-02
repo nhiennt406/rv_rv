@@ -5,31 +5,6 @@ const auth = require("../../middleware/auth");
 const Bike = require("../../models/Bike");
 const User = require("../../models/User");
 
-// NOTE  Create a bike
-// @route   Get api/bikes
-// @desc    Create a bike
-// @access  Private
-// const updateStatus = async (req, res) => {
-//   const bike = Bike.findById(req.params.id);
-//   try {
-//     if (id) {
-//       const response = await updateStatus(id, data)
-//       if (response)
-//       return res.json(response)
-
-//     } else return res.json({
-//       message: e,
-//       status: "err"
-//     })
-//   } catch (e) {
-//     return res.json({
-//       message: e,
-//       status: "err"
-//     })
-
-//   }
-// }
-
 router.post(
   "/",
   [
@@ -206,20 +181,7 @@ router.put("/like/:id", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-// router.patch("/status/:id",z updateStatus)
 
-// try {
-//   const bike = await Bike.findById(req.params.id);
-
-//  bike.status
-//   // bike.status.unshift({ user: req.user.id });
-//   await bike.save();
-
-//   res.json(bike.status);
-// } catch (err) {
-//   console.error(err.message);
-//   res.status(500).send("Server Error");
-// }
 
 //NOTE  Dislike a bike
 // @route   POST api/bikes/unlike/:id

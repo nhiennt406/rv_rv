@@ -28,9 +28,9 @@ router.post(
       check("description", "Description is required")
         .not()
         .isEmpty(),
-      check("date1", "Ngay dang is required")
-        .not()
-        .isEmpty(),
+      // check("date1", "Ngay dang is required")
+      //   .not()
+      //   .isEmpty(),
     ]
   ],
 
@@ -55,7 +55,7 @@ router.post(
         name: user.name,
         avatar: user.avatar,
         user: req.user.id,
-
+        status: "Chưa duyệt"
       });
       const post = await newPost.save();
       res.json(post);
@@ -65,11 +65,34 @@ router.post(
     }
   }
 );
+//patch status
+router.patch("/:id", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    //Check status
+    if (post)
+    // bike.status==="Chưa duyệt")
+    {
+
+      post.status="Đã duyệt";
+
+    }
+
+    await post.save();
+
+    console.log(post.status);
+    res.json(post.status);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 //NOTE  GET all post
 // @route   Get api/posts
 // @desc    Get all post
 // @access  Public
-router.get("/", auth, async (req, res) => {
+//edit  auth
+router.get("/",  async (req, res) => {
   try {
     const posts = await Post.find().sort({ date: -1 });
     res.json(posts);
@@ -82,7 +105,7 @@ router.get("/", auth, async (req, res) => {
 // @route   Get api/posts/:id
 // @desc    Get all post by id
 // @access  Public
-router.get("/:id", auth, async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) {
@@ -103,16 +126,17 @@ router.get("/:id", auth, async (req, res) => {
 // @route   DELETE api/posts/:id
 // @desc    Delete a post
 // @access  Private
-router.delete("/:id", auth, async (req, res) => {
+// router.delete("/:id", auth, async(req,res))
+router.delete("/:id",  async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) {
       return res.status(404).json({ msg: "Post not found" });
     }
     // Check user
-    if (post.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "User not authorized" });
-    }
+    // if (post.user.toString() !== req.user.id) {
+    //   return res.status(401).json({ msg: "User not authorized" });
+    // }
     await post.remove();
     res.json({ msg: "Post Remove" });
   } catch (err) {
