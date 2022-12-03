@@ -23,6 +23,11 @@ import Bike from "./components/bike/Bike";
 import AddFashion from "./components/post/AddFashion";
 import FashionDetail from "./components/fashion/FashionDetail";
 import Fashion from "./components/fashion/Fashion";
+//pet
+import AddPet from "./components/post/AddPet";
+import PetDetail from "./components/pet/PetDetail";
+import Pet from "./components/pet/Pet";
+
 //admin
 // import Dashboard from "";"
 
@@ -73,8 +78,11 @@ const App = () => {
               <PrivateRoute exact path="/add-mobile" component={AddMobile} />
               <PrivateRoute exact path="/add-bike" component={AddBike} />
               <PrivateRoute exact path="/addfashion" component={AddFashion} />
-              <PrivateRoute exact path="/fashion" component={Fashion} />
+              <PrivateRoute exact path="/addpet" component={AddPet} />
+              <PrivateRoute exact path="/pet" component={Pet} />
+              {/* <PrivateRoute exact path="/pet" component={Pet} /> */}
               <PrivateRoute exact path="/bike" component={Bike} />
+              <PrivateRoute exact path="/pet/:id" component={PetDetail} />
               <PrivateRoute exact path="/checkoutsucess" component={CheckOutSucess} />
               <PrivateRoute exact path="/pay" component={StripeContainer} />
               <PrivateRoute exact path="/form" component={PaymentForm} />

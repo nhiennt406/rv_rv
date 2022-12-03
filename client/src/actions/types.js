@@ -23,3 +23,7 @@ export const GET_FASHION="GET_FASHION";
 export const GET_SINGLEFASHION="GET_SINGLEFASHION";
 export const FASHION_ERROR="FASHION_ERROR";
 export const DELELTE_FASHION=" DELETE_FASHION";
+export const GET_PET="GET_PET";
+export const GET_SINGLEPET="GET_SINGLEPET";
+export const PET_ERROR="PET_ERROR";
+export const DELELTE_PET=" DELETE_PET";

@@ -89,9 +89,9 @@ export default function PaymentForm() {
                         catch{  
                             try { const res = await axios.post("http://localhost:5000/api/fashions", kq, config) }
                             catch{
-                                // try{
-                                    // const res= await axios.post(`http://localhost:5000/api/fashions`,kq,config)
-                                // }catch{ console.log("thêm dô chớ sao")
+                                try{
+                                    const res= await axios.post(`http://localhost:5000/api/pets`,kq,config)
+                                }catch{ console.log("thêm dô chớ sao")}
                                     // try{
                                     //     // const res =await axios.post(`http://loaclhost`)
                                     // }catch{

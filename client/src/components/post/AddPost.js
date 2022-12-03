@@ -38,7 +38,7 @@ const AddPost = () => {
                   </GridColumn>
                   <GridColumn width={8}>
                     <h3>Thú Cưng</h3>
-                    <Link to="/mobile">
+                    <Link to="/addpet">
                       <div className="dog-gif"></div>
                     </Link>{" "}
                   </GridColumn>
