@@ -46,9 +46,16 @@ const AddFashion = (
     cost
   } = formData;
   const onChange = e => {
-    const costTemp = e.target.value * formData.costEdit;
-    formData.status = "Chưa duyệt";
+    if 
+    (
+    
+      [e.target.name]=="date1"
+      )
+    {const costTemp = e.target.value * formData.costEdit;
+    
     formData.cost = costTemp;
+    }
+    formData.status = "Chưa duyệt";
     localStorage.setItem("datane", JSON.stringify(formData));
     
     setFormData({

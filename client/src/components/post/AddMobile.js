@@ -22,9 +22,15 @@ const AddMobile = (
   });
   const { text,date1, cost, costEdit, img, price, phone, address, description, social,status } = formData;
   const onChange = e => {
-    const costTemp = e.target.value * formData.costEdit;
+    if 
+    (
+    
+      [e.target.name]=="date1"
+      )
+    {const costTemp = e.target.value * formData.costEdit;
+    
+    formData.cost = costTemp;}
     formData.status = "Chưa duyệt";
-    formData.cost = costTemp;
     localStorage.setItem("datane", JSON.stringify(formData));
     setFormData({
       ...formData,

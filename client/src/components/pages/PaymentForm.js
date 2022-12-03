@@ -83,7 +83,7 @@ export default function PaymentForm() {
                     setSuccess(true)
                     console.log(`response`);
                     console.log(response)
-                    try { const res = await axios.post(`http://localhost:5000/api/bike`, kq, config) }
+                    try { const res = await axios.post(`http://localhost:5000/api/bikes`, kq, config) }
                     catch {
                         try { const res = await axios.post("http://localhost:5000/api/posts", kq, config) }
                         catch {

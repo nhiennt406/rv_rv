@@ -87,4 +87,23 @@ router.get("/", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+// delete user
+router.delete("/:id", async (req, res) => {
+  try {
+    const user= await User.findById(req.params.id)
+    // const pet = await Pet.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+    await user.remove();
+    res.json({ msg: "User Remove" });
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === "ObjectId") {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    res.status(500).send("Server Error");
+  }
+});
 module.exports = router;
