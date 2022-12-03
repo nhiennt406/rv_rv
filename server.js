@@ -64,7 +64,9 @@ app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/posts", require("./routes/api/posts"));
 app.use("/api/bikes", require("./routes/api/bikes"));
 app.use("/api/fashions", require("./routes/api/fashions"));
-app.use("/api/pets",require("./routes/api/pet"))
+app.use("/api/pets",require("./routes/api/pet"));
+app.use("/api/works", require("./routes/api/work"));
+
 // app.use("/payment",require("./routes/api/payment"));
 // app.use("api/stripe", require("./routes/api/stripe"));
 

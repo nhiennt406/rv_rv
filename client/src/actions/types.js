@@ -27,3 +27,7 @@ export const GET_PET="GET_PET";
 export const GET_SINGLEPET="GET_SINGLEPET";
 export const PET_ERROR="PET_ERROR";
 export const DELELTE_PET=" DELETE_PET";
+export const GET_WORK="GET_WORK";
+export const GET_SINGLEWORK="GET_SINGLEWORK";
+export const WORK_ERROR="WORK_ERROR";
+export const DELELTE_WORK=" DELETE_WORK";

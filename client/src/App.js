@@ -27,7 +27,10 @@ import Fashion from "./components/fashion/Fashion";
 import AddPet from "./components/post/AddPet";
 import PetDetail from "./components/pet/PetDetail";
 import Pet from "./components/pet/Pet";
-
+//work
+import AddWork from "./components/post/AddWork";
+import WorkDetail from "./components/work/WorkDetail";
+import Work from "./components/work/Work";
 //admin
 // import Dashboard from "";"
 
@@ -87,6 +90,12 @@ const App = () => {
               <PrivateRoute exact path="/pay" component={StripeContainer} />
               <PrivateRoute exact path="/form" component={PaymentForm} />
               {/* <PrivateRoute exact path="/payment" component={PaymentContent} /> */}
+
+              {/* work */}
+              <PrivateRoute exact path="/addwork" component={AddWork} />
+              <PrivateRoute exact path="/work" component={Work} />
+              <PrivateRoute exact path="/work/:id" component={WorkDetail} />
+              {/*  */}
               <PrivateRoute exact path="/admin" component={Dashboard} />
             </Switch>
           </Container>

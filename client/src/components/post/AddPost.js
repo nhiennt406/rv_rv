@@ -52,7 +52,7 @@ const AddPost = () => {
                 <div className="bike-gif"></div>
               </Link>
               <h3>Tuyển Dụng</h3>
-              <Link to="/mobile">
+              <Link to="/addwork">
                 <div className="job-gif"></div>
               </Link>
             </Grid.Column>

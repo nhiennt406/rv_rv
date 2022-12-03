@@ -30,6 +30,11 @@
   height: 60vh;
   margin: 0px 50px;
 }
+.banner-tuyendung {
+  background: url("img/tuyendung.png") no-repeat center center/cover;
+  height: 60vh;
+  margin: 0px 50px;
+}
 .banner-dangtin2 {
   background: url("img/bannerdoc5.png") no-repeat center center/cover;
   background-size: 100% 100%;
