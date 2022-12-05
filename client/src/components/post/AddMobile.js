@@ -17,10 +17,10 @@ const AddMobile = (
     address: "",
     description: "",
     img: "", date1:"", cost:"",
-    status: "Chưa duyệt",
+    status: "Chưa duyệt", brand:"",
     costEdit:3000,
   });
-  const { text,date1, cost, costEdit, img, price, phone, address, description, social,status } = formData;
+  const { text,date1, cost, costEdit, brand,img, price, phone, address, description, social,status } = formData;
   const onChange = e => {
     if 
     (
@@ -50,7 +50,9 @@ const AddMobile = (
     });
     // setFormData({...formData, e.target.img: e.target.value})
   };
-
+  console.log("date1:", formData.date1);
+  console.log("brand:", formData.brand);
+  
   return (
     <div>
       <div className="banner-dangtin"></div>
@@ -132,6 +134,20 @@ const AddMobile = (
                         onChange={e => onChange(e)}
                         type="text"
                         placeholder="Số điện thoại của bạn"
+                      />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <label>
+                      <i className="phone icon"></i> Tình trạng bảo hành
+                    </label>
+                    <div className="ui input">
+                      <input
+                        value={formData.brand}
+                        name="brand"
+                        onChange={e => onChange(e)}
+                        type="text"
+                        placeholder="Tình trạng bảo hành của điện thoại"
                       />
                     </div>
                   </div>

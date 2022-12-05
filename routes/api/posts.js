@@ -53,6 +53,7 @@ router.post(
         address: req.body.address,
         description: req.body.description,
         name: user.name,
+        brand: user.body.brand,
         avatar: user.avatar,
         user: req.user.id,
         status: "Chưa duyệt"

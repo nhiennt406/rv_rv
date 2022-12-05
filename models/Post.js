@@ -43,6 +43,10 @@ const PostSchema = new Schema({
     type: String,
     required: true
   },
+  brand: {
+    type: String,
+    required: true
+  },
   name: {
     type: String
   },

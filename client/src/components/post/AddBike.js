@@ -117,6 +117,9 @@ const AddBike = (
                   <div className="field">
                     <label>
                       <i className="audio description icon"></i> Tiêu đề
+                      <sup
+                      style={{color:"red" ,fontSize:"20px"}}
+                       color="red"> *</sup>
                     </label>
                     <div className="ui input">
                       <input
@@ -162,6 +165,9 @@ const AddBike = (
                   <div className="field">
                     <label>
                       <i className="phone icon"></i> Tình trạng xe
+                      <sup
+                      style={{color:"red" ,fontSize:"20px"}}
+                       color="red"> *</sup>
                     </label>
                     <div className="ui input">
                       <TextArea
@@ -187,6 +193,9 @@ const AddBike = (
                   <div className="field">
                     <label>
                       <i className="dollar sign icon"></i> Giá tiền bạn muốn bán
+                      <sup
+                      style={{color:"red" ,fontSize:"20px"}}
+                       color="red"> *</sup>
                     </label>
 
                     <div className="ui input">
@@ -203,6 +212,9 @@ const AddBike = (
                   <div className="field">
                     <label>
                       <i className="time sign icon"></i> Bạn muốn đăng tin trong bao nhiêu ngày:
+                      <sup
+                      style={{color:"red" ,fontSize:"20px"}}
+                       color="red"> *</sup>
                     </label>
                     <div className="ui input">
                       <NumberFormat
@@ -220,6 +232,9 @@ const AddBike = (
                   <div className="field">
                     <label>
                       <i className="pencil alternate icon"></i> Mô tả
+                      <sup
+                      style={{color:"red" ,fontSize:"20px"}}
+                       color="red"> *</sup>
                     </label>
                     <div className="ui input">
                       <TextArea
@@ -233,7 +248,10 @@ const AddBike = (
                   </div>
                   <div className="field">
                     <label>
-                      <i class="car icon"></i> Hãng xe
+                      <i class="car icon"></i> Hãng xe 
+                      <sup
+                      style={{color:"red" ,fontSize:"20px"}}
+                       color="red"> *</sup>
                     </label>
                     <div className="ui input">
                       <TextArea
@@ -264,22 +282,23 @@ const AddBike = (
                   </div>
                 </div>
                 <center>
-                  <Button href="http://localhost:3000/payment" className="ui button" onClick={() => handleClickH()}>
+                  {/* <Button href="http://localhost:3000/payment" className="ui button" onClick={() => handleClickH()}> */}
                     {/* <Button type="submit" className="ui button"  > */}
                     {/* className="btn" onClick={() => HandleOkPayment(true)} */}
                     {/* <Link to={'/payment'} className="ui  button"/> */}
-                    Thanh Toán && Đăng bài
-                  </Button>
+                    {/* Thanh Toán && Đăng bài */}
+                  {/* </Button> */}
                   {/* </button> */}
                   {/* </Link> */}
 
                   {/* <Link to="/payment" className="ui primary basic button">
                  Đăng Tin
                 </Link> */}
+                 <PayBtn BikeItem={formData} />
                   <Link to="/bike" className="ui primary basic button">
-                    Chuyển đến trang rao vặt xe cộ
+                    Chuyển đến trang tin quảng cáo xe cộ
                   </Link></center>
-                <PayBtn BikeItem={formData} />
+                {/* <PayBtn BikeItem={formData} /> */}
               </form>
             </Grid.Column>
             <Grid.Column width={3}>

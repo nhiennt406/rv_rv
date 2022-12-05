@@ -32,9 +32,9 @@ router.post(
       check("tinhtrang", "Tinh trang is required")
         .not()
         .isEmpty(),
-        // check("date1", "Ngay dang is required")
-        // .not()
-        // .isEmpty(),
+        check("date1", "Ngay dang is required")
+        .not()
+        .isEmpty(),
     ]
   ],
   async (req, res) => {

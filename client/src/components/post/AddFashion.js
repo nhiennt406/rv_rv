@@ -80,6 +80,7 @@ const AddFashion = (
   //   const [editorState, setEditorState] = useState(() =>
   //   EditorState.createEmpty()
   // );
+  console.log("date1:", formData.date1);
   return (
     <div>
       <div className="banner-car"></div>

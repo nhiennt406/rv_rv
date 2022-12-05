@@ -29,8 +29,8 @@ const AddWork = (
     const onChange = e => {
         if ([e.target.name] == "date1") {
         const costTemp = e.target.value * formData.costEdit;
-        formData.cost = costTemp;}
-
+        formData.cost = costTemp;
+    }
         formData.status = "Chưa duyệt";
         localStorage.setItem("datane", JSON.stringify(formData));
         setFormData({

@@ -1,6 +1,7 @@
 
 import React from "react";
 import StripeContainer from "./StripeContainer";
+import { Button} from "semantic-ui-react";
 
 const goiThanhToan= ()=>{
     return(
@@ -22,9 +23,9 @@ const PayBtn=( BikeItem)=>{
 // console.log(BikeItem);
     return (
         <>
-      <button
+      <Button
       onClick={()=>handleClickH()}
-      > Thanh toan</button>
+      >  Thanh Toán && Đăng bài</Button>
         </>
     )
 }
