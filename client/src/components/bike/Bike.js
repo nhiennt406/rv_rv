@@ -6,8 +6,11 @@ import BikeItem from "./BikeItem";
 import { Grid, Card } from "semantic-ui-react";
 import { Divider, Input } from 'antd';
 import axios from 'axios';
+// import SearchBar from "../SearchBar";
+import Search from "../Search"
 // import ReactSearchBox from "react-search-box";
 // import { JsonWebTokenError } from "jsonwebtoken";
+
 const Bike = (
   { getBike, bike: { bikes, loading } }
 ) => {
@@ -15,91 +18,17 @@ const Bike = (
   useEffect(() => {
     getBike();
   }, [getBike]);
-  // const state = {
-  // 	post: [],
-  // 	allPosts: []
-  // };
-  // const componentDidMount=()=> {
-  // 	axios
-  // 		.get('http://localhost:5000/api/bikes', {
-  // 			headers: {
-  // 				Accept: "application/json",
-  // 				"Content-Type": "application/json"
-  // 			}
-  // 		})
-  // 		.then(({ data }) => {
-  // 			this.setState({
-  // 				post: data,
-  // 				allPosts: data // array data from JSON stored in these
-  // 			});
-  // 		})
-  // 		.catch(err => {});
-  // }
-  // const _onKeyUp = e => {
-  // 	// filter post list by title using onKeyUp function
-  // 	const post = this.state.allPosts.filter(item =>
-  // 		item.title.rendered.toLowerCase().includes(e.target.value.toLowerCase())
-  // 	);
-  // 	this.setState({ post });
-  // };
-  // const [APIData, setAPIData] = useState([])
-  // const [filteredResults, setFilteredResults] = useState([]);
-  // const [searchInput, setSearchInput] = useState('');
-  // const [search, setSearch] = useState('');
+  // const [searchResults, setSearchResults] = useState([])
+  const [posts, setPosts] = useState([])
 
+  useEffect(() => {
+    axios.get(`http://localhost:5000/api/bikes`).then(json => {
+      setPosts(json)
+      setSearchResults(json)
+    })
+  }, [])
 
-  // useEffect(() => {
-  //   axios.get(`http://localhost:5000/api/bikes`)
-  //     .then((response) => {
-  //       setAPIData(response.data);
-  //     })
-  // }, [])
-
-  // const [data, setdata] = useState([]);
-  // useEffect(() => {
-  //   axios(`http://localhost:5000/api/bikes`).then(
-  //     ({ data }) => setdata(data)
-  //   );
-  // }, []);
-
-  // const [handleSearch] = useFetchDataHook();
-
-  // function handleInputChange(e) {
-  //     setKeyword(e.target.value)
-  // }
-  // const arrSearch = [];
-
-  // const searchItems = (searchValue) => {
-  //   setSearchInput(searchValue)
-  //   if (searchInput !== '') {
-  //     const filteredData = APIData.filter((item) => {
-  //       return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
-
-  //     })
-  //     // JSON.stringify(filteredData);
-  //     setFilteredResults(filteredData)
-  //     // arrSearch.push(filteredData);
-
-  //     setSearch(arrSearch);
-  //     // console.log("h",filteredData);
-  //     {
-  //       arrSearch.map((item) =>
-  //         console.log("item", item))
-  //     }
-  //   }
-  //   else {
-  //     setFilteredResults(APIData)
-  //   }
-
-
-  // }
-  // console.log('id', search);
-  // {arrSearch.map((item) => 
-  //   console.log("item",item))}
-  // for (var i = 0; i < search.length; i++) {
-  //   console.log('id', search[i]._id)
-  // }
-  // console.log("s:", arrSearch._)
+  const [searchResults, setSearchResults] = useState([])
   return loading ? (
     <Spinner />
   ) :
@@ -115,10 +44,20 @@ const Bike = (
             textAlign: "center"
           }}
         >
-          Xe cộ giá rẻ 2019
+          Xe cộ giá rẻ
         </h1>
-     
 
+        {/* <SearchBar/> */}
+        {/* <SearchBar posts={posts} setSearchResults={setSearchResults} />
+        <ListPage searchResults={searchResults} /> */}
+        {/* {searchResults.map(post => {
+          return (
+            <BikeItem key={post.id} post={post} />
+          )
+        }
+        )
+        } */}
+        {/* <BikeItem searchResults={searchResults}/> */}
         <div style={{ margin: " 0px 30px" }}>
           <Grid>
             <Grid.Row>
@@ -126,17 +65,18 @@ const Bike = (
                 <div className="banner-doc2"></div>
               </Grid.Column>
               <Grid.Column width={10}>
-                {bikes.map(bike =>{  
-                    const { _id, text, name, user, date, img, price, status }= bike
-                  console.log("bike status:", status)
-                  
-                  return status==="Đã duyệt" ? (
+              <Search/>
+                {/* {bikes.map(bike => {
+                  const { _id, text, name, user, date, img, price, status } = bike
+                  // console.log("bike status:", status)
+
+                  return status === "Đã duyệt" ? (
                     <BikeItem key={bike._id} bike={bike} />
                   ) : ('')
-                
-              }
-                )
+
                 }
+                )
+                } */}
               </Grid.Column>
 
               <Grid.Column width={3}>

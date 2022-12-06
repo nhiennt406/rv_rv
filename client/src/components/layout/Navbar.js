@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Logo from "../../img/logo.png";
 import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
+
+import { Button } from "semantic-ui-react";
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLink = (
     <div className="right menu">
@@ -71,6 +73,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <Link className="item" to="/about">
         Giới Thiệu
       </Link>
+      {/* <SearchBar/> */}
       {!loading && (
         <Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>
       )}
