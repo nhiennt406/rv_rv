@@ -5,6 +5,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Navbar from "./components/layout/Navbar";
 import Homepage from "./components/layout/Homepage";
+import QLTin from "./components/pages/QLTin"
 import Alert from "./components/layout/Alert";
 import Tos from "./components/pages/Tos";
 import Footer from "./components/layout/Footer";
@@ -89,6 +90,7 @@ const App = () => {
               <PrivateRoute exact path="/checkoutsucess" component={CheckOutSucess} />
               <PrivateRoute exact path="/pay" component={StripeContainer} />
               <PrivateRoute exact path="/form" component={PaymentForm} />
+              <PrivateRoute exact path="/manager-post" component={QLTin} />
               {/* <PrivateRoute exact path="/payment" component={PaymentContent} /> */}
 
               {/* work */}

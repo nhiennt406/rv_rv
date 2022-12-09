@@ -55,6 +55,15 @@ app.post("/payment", cors(), async (req, res) => {
     })
   }
 })
+app.get("/payment", async (req, res) => {
+  try {
+    const payments = await Payment.find().sort({ date: -1 });
+    res.json(payments);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 //Set Path
 
 //Define routes

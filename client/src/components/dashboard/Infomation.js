@@ -66,7 +66,7 @@ const Infomation = ({
               <form className="ui form">
                 <div className="unstackable two fields">
                   <div className="field">
-                    <label>Website cá nhân</label>
+                    <label>Email</label>
                     <div className="ui  input">
                       <i className="globe big loading icon"></i>
                       <input
@@ -99,7 +99,7 @@ const Infomation = ({
                     </div>
                   </div>
                   <div className="field">
-                    <label>Giới thiệu</label>
+                    <label>Họ tên</label>
                     <div className="ui  input">
                       <i className="user big  outline icon"></i>
                       <input type="text" value={bio} name="bio" disabled />
@@ -107,7 +107,7 @@ const Infomation = ({
                   </div>
                 </div>
 
-                <div className="field">
+                {/* <div className="field">
                   <label>Facebook của bạn</label>
                   <div className="ui  input">
                     <a className="ui circular facebook icon button" href="!#">
@@ -120,8 +120,8 @@ const Infomation = ({
                       disabled
                     />
                   </div>
-                </div>
-                <h1 className="ui header">Các liên kết khác nếu có</h1>
+                </div> */}
+                {/* <h1 className="ui header">Các liên kết khác nếu có</h1>
                 <div className="field">
                   <label>Youtube</label>
                   <div className="ui  input">
@@ -135,8 +135,8 @@ const Infomation = ({
                       disabled
                     />
                   </div>
-                </div>
-                <div className="field">
+                </div> */}
+                {/* <div className="field">
                   <label>Twitter</label>
                   <div className="ui  input">
                     <a className="ui circular facebook icon button" href="!#">
@@ -149,8 +149,8 @@ const Infomation = ({
                       disabled
                     />
                   </div>
-                </div>
-                <div className="field">
+                </div> */}
+                {/* <div className="field">
                   <label>Instagram</label>
                   <div className="ui  input">
                     <a className="ui circular instagram icon button" href="!#">
@@ -163,8 +163,8 @@ const Infomation = ({
                       disabled
                     />
                   </div>
-                </div>
-                <div className="field">
+                </div> */}
+                {/* <div className="field">
                   <label>Linkedin</label>
                   <div className="ui  input">
                     <a className="ui circular linkedin icon button" href="!#">
@@ -177,7 +177,7 @@ const Infomation = ({
                       disabled
                     />
                   </div>
-                </div>
+                </div> */}
               </form>
               <DashboardAction />
             </Grid.Column>

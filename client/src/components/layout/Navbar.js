@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../img/logo.png";
 import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
+import  "../../App.css"
 
 import { Button } from "semantic-ui-react";
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
@@ -14,12 +15,17 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             <i className="arrows plus icon"></i>
             Đăng Tin
           </Link>
+          <Link to="/manager-post" className="ui inverted primary button">
+          <i className="fa-regular fa-list-check"></i>
+     
+           Quản Lý Tin
+          </Link>
         </div>
       </div>
       <div className="item">
         <div className="ui tiny buttons">
           <Link to="/dashboard" className="ui inverted primary button">
-            <i className="user circle icon"></i>
+          <i className="fa-solid fa-list-check"></i>
             Thông tin cá nhân
           </Link>
           <div className="or"></div>

@@ -116,6 +116,48 @@ router.patch("/:id", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+router.patch("/hh/:id", async (req, res) => {
+  try {
+    const work = await Work.findById(req.params.id);
+    //Check status
+    if (work)
+    // bike.status==="Chưa duyệt")
+    {
+
+      work.status="Hết hạn";
+
+    }
+
+    await work.save();
+
+    console.log(work.status);
+    res.json(work.status);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+router.patch("/giahan/:id", async (req, res) => {
+  try {
+    date1= req.body;
+    const work = await Work.findById(req.params.id);
+    //Check status
+    if (work)
+    {
+      work.date1=req.body.date1;
+      // console.log("h",req.body)
+      work.date= new Date();
+      work.status="Chưa duyệt"
+    }
+    await work.save();
+
+    // console.log(bike.status);
+    res.json(work.date1);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 //NOTE  get fashion by id
 // @route   Get api/fashion/:id
 // @desc    Get all fashion by id

@@ -30,7 +30,7 @@ const Pet = ({ getPet, pet: {pets }}) => {
           textAlign: "center"
         }}
       >
-        Thời Trang
+      Thú Cưng
       </h1>
       <div style={{ margin: " 0px 30px" }}>
         <Grid>

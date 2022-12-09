@@ -90,24 +90,55 @@ router.get("/", async (req, res) => {
 router.patch("/:id", async (req, res) => {
   try {
     const fashion = await Fashion.findById(req.params.id);
+    if (fashion)
+    {
+      fashion.status="Đã duyệt";
+    }
+    await fashion.save();
+    console.log(fashion.status);
+    res.json(fashion.status);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+router.patch("/hh/:id", async (req, res) => {
+  try {
+    const fashion = await Fashion.findById(req.params.id);
     //Check status
     if (fashion)
     // bike.status==="Chưa duyệt")
     {
 
-      // console.log('>>>>>>>>>>>>>>>>>>>test');
-      // console.log('>>>>>bike', bike.price);
-      // console.log('status', bike.status);
-      fashion.status="Đã duyệt";
-      // console.log('ssssss', bike.status);
-      // console.log('>>>>>bike', bike);
+      fashion.status="Hết hạn";
+
     }
-    // return res.json(bike.status);
-    // bike.likes.unshift({ user: req.user.id });
+
     await fashion.save();
-    // console.log('>>> bike check:', bike)
+
     console.log(fashion.status);
     res.json(fashion.status);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+router.patch("/giahan/:id", async (req, res) => {
+  try {
+    date1= req.body;
+    const fashion = await Fashion.findById(req.params.id);
+    //Check status
+    if (fashion)
+    {
+      fashion.date1=req.body.date1;
+      // console.log("h",req.body)
+      fashion.date= new Date();
+      fashion.status="Chưa duyệt"
+    }
+    await fashion.save();
+
+    // console.log(fashion.status);
+    res.json(fashion.date1);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

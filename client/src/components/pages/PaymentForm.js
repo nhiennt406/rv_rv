@@ -5,7 +5,7 @@ import { Elements } from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
 
 import { createBike } from "../../actions/bike";
-import { Button, Header, Icon, Modal } from 'semantic-ui-react'
+import { Button, Container, Header, Icon, Modal } from 'semantic-ui-react'
 import BikeItem from '../bike/BikeItem'
 
 const PUBLIC_KEY = "pk_test_51M7zRhBbJjfukPr45AM4xY9GbR6BbhToF4w2AO35u3ShMCrzy1EtibG0ymXo0e4MS8gz4vouCEqUUModv9HGZmeY004W3f34a8"
@@ -31,22 +31,13 @@ const CARD_OPTIONS = {
         }
     }
 }
-// const kq=JSON.parse(localStorage.getItem("datane") );
-
 const kq = JSON.parse(localStorage.getItem("datane"));
-
-const priceTemp = kq.price;
-const tien = parseInt(kq.cost, 10) * 100;
-// const onSubmit = e => {
-//     e.preventDefault();
-//     createBike(kq);
-// };
-
-const testClick = () => {
-    console.log("đã click rồi đó")
-
-}
-
+const kq2 = JSON.parse(localStorage.getItem("datane2"));
+// const kq = JSON.parse(localStorage.getItem("datane"));
+// console.log("kq", kq);
+// console.log("kq2", kq2);
+// const priceTemp = kq.price;
+const tien = parseInt(kq.cost + kq2.cost2, 10);
 
 export default function PaymentForm() {
     const [success, setSuccess] = useState(false)
@@ -58,7 +49,7 @@ export default function PaymentForm() {
             "Content-Type": "application/json"
         }
     };
-    console.log("data đó bà :", priceTemp);
+    // console.log("data đó bà :", priceTemp);
     console.log(kq);
     console.log(tien);
 
@@ -83,16 +74,24 @@ export default function PaymentForm() {
                     setSuccess(true)
                     console.log(`response`);
                     console.log(response)
-                    try { const res = await axios.post(`http://localhost:5000/api/bikes`, kq, config) }
+                    try {
+                        const res = await axios.post(`http://localhost:5000/api/bikes`, kq, config)
+                        const res2 = await axios.post(`http://localhost:5000/api/bikes`, kq, config)
+
+                    }
+
                     catch {
                         try { const res = await axios.post("http://localhost:5000/api/posts", kq, config) }
                         catch {
                             try { const res = await axios.post("http://localhost:5000/api/fashions", kq, config) }
                             catch {
-                                try { const res = await axios.post(`http://localhost:5000/api/pets`, kq, config)
+                                try {
+                                    const res = await axios.post(`http://localhost:5000/api/pets`, kq, config)
                                 } catch {
-                                    try { const res = await axios.post(`http://localhost:5000/api/works`, kq, config)
-                                    } catch { console.log("thêm dô chớ sao")
+                                    try {
+                                        const res = await axios.post(`http://localhost:5000/api/works`, kq, config)
+                                    } catch {
+                                        console.log("thêm dô chớ sao")
                                     }
                                 }
                                 // }
@@ -110,26 +109,35 @@ export default function PaymentForm() {
         }
     }
     return (
-        <>
-
-            {kq.price}
+        <><div style={{ width: "550px" }}>
+            {/* {kq.price} */}
             {!success ?
                 <div>
                     <form onSubmit={handleSubmit}>
-                        Tổng tiền cần thanh Toán<br />
-                        {kq.cost}
+                        <center>THÔNG TIN HÓA ĐƠN </center>
+                        <br/>
+                        Khách hàng: NT Nhiên <br/>
+                        Email: NhienB1805799@student.ctu.edu.vn<br/>
+                        Tổng tiền cần thanh Toán:   {kq.cost}<br />
+                        Vui lòng nhập đầy đủ thông tin vào thông tin thanh toán để quá trình đăng bài hoàn tất!<br/>
+                      
+                      
                         <fieldset className="FormGroup">
-                            <center>THÔNG TIN TÀI KHOẢN THANH TOÁN </center>
+                            <center>THÔNG TIN TÀI KHOẢN THANH TOÁN 
+                                
+                            </center>
                             <div className="FormRow">
 
                                 <CardElement options={CARD_OPTIONS} />
                                 {/* <PaymentElement options={CARD_OPTIONS}/> */}
                             </div>
                         </fieldset>
-                        <button type="submit"
-                        >Pay</button>
-                        <button onClick={() => setOpened(true)}
-                        >Hủy</button>
+                        <center>
+                            <Button type="submit"
+                            >Thanh Toán</Button>
+                            <Button onClick={() => setOpened(true)}
+                            >Hủy</Button>
+                        </center>
                     </form>
                     <Modal size="mini"
                         open={opened}
@@ -138,8 +146,7 @@ export default function PaymentForm() {
                         closeOnEscape={false}
                         closeOnClickOutside={false}
                         disableEnforceFocus
-                    // backdrop='static'
-                    // keyboard= {true}
+
                     >
                         <Header icon>
                             <Icon name='exclamation triangle' color="red" />
@@ -172,7 +179,7 @@ export default function PaymentForm() {
                     <h2>Thanh Toán Thành Công rồi đó bà dà</h2>
                 </div>
             }
-
+        </div>
 
             {/* </Elements> */}
         </>

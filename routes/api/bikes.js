@@ -78,22 +78,49 @@ router.patch("/:id", async (req, res) => {
     const bike = await Bike.findById(req.params.id);
     //Check status
     if (bike)
-    // bike.status==="Chưa duyệt")
     {
-
-      // console.log('>>>>>>>>>>>>>>>>>>>test');
-      // console.log('>>>>>bike', bike.price);
-      // console.log('status', bike.status);
       bike.status="Đã duyệt";
-      // console.log('ssssss', bike.status);
-      // console.log('>>>>>bike', bike);
     }
-    // return res.json(bike.status);
-    // bike.likes.unshift({ user: req.user.id });
     await bike.save();
-    // console.log('>>> bike check:', bike)
     console.log(bike.status);
     res.json(bike.status);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+router.patch("/hh/:id", async (req, res) => {
+  try {
+    const bike = await Bike.findById(req.params.id);
+    //Check status
+    if (bike)
+    {
+      bike.status="Hết hạn";
+    }
+    await bike.save();
+    console.log(bike.status);
+    res.json(bike.status);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+router.patch("/giahan/:id", async (req, res) => {
+  try {
+    date1= req.body;
+    const bike = await Bike.findById(req.params.id);
+    //Check status
+    if (bike)
+    {
+      bike.date1=req.body.date1;
+      // console.log("h",req.body)
+      bike.date= new Date();
+      bike.status="Chưa duyệt"
+    }
+    await bike.save();
+
+    // console.log(bike.status);
+    res.json(bike.date1);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -112,6 +139,26 @@ router.get("/", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+// patch status=hethan
+// router.patch("/stthh/a", async (req, res) => {
+//   try {
+//     const bikes = await Bike.findById(req.params.id);
+//     //Check status
+//     bikes.map((bike)=>{
+//     if(bike)
+//     {
+//       bike.status="Hết hạn";
+//     }
+//      bike.save();
+//     // console.log(bike.status);
+//     res.json(bike.status);
+//   })
+  
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send("Server Error");
+//   }
+// });
 //NOTE  get bike by id
 // @route   Get api/bikes/:id
 // @desc    Get all bike by id

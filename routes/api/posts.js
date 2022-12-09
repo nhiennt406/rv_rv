@@ -88,6 +88,49 @@ router.patch("/:id", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+//
+router.patch("/hh/:id", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    //Check status
+    if (post)
+    // bike.status==="Chưa duyệt")
+    {
+
+      post.status="Hết hạn";
+
+    }
+
+    await post.save();
+
+    console.log(post.status);
+    res.json(post.status);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+router.patch("/giahan/:id", async (req, res) => {
+  try {
+    date1= req.body;
+    const post = await Post.findById(req.params.id);
+    //Check status
+    if (post)
+    {
+      post.date1=req.body.date1;
+      // console.log("h",req.body)
+      post.date= new Date();
+      post.status="Chưa duyệt"
+    }
+    await post.save();
+
+    // console.log(bike.status);
+    res.json(post.date1);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 //NOTE  GET all post
 // @route   Get api/posts
 // @desc    Get all post

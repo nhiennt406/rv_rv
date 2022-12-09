@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 const DashboardAction = () => {
   return (
     <div style={{ marginTop: "40px" }}>
+      <center>
       <Link to="/edit-profile" class="ui positive basic button">
         <i class="user circle icon"></i>
         Chỉnh sửa thông tin
@@ -11,7 +12,7 @@ const DashboardAction = () => {
         <i class="home icon"></i>
         {/* <i class="backward icon"></i> */}
         Trang Chủ
-      </Link>
+      </Link></center>
     </div>
   );
 };

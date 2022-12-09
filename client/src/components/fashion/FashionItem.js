@@ -9,6 +9,8 @@ const FashionItem = ({
   deleteFashion,
   fashion: { _id, text, name, user, date, img, price }
 }) => {
+  console.log("auth", auth)
+  console.log("auth.user.id", auth.user._id)
   return (
     <Fragment>
       <div className="ui items">
@@ -41,6 +43,7 @@ const FashionItem = ({
               Xem chi tiết
             </Link>
             {!auth.loading && user === auth.user._id && (
+
               <Link
                 onClick={e => deleteFashion(_id)}
                 className="ui mini red basic button"

@@ -1,11 +1,37 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { Grid, GridColumn } from "semantic-ui-react";
+import NumberFormat from "react-number-format";
+import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 const AddPost = () => {
+  const [opened, setOpened] = useState(false);
+  // const sl=0;
+  const [formT, setformT]= useState(
+   { sl:0}
+    );
+  const {sl}=formT;
+  const onChange = e => {
+    
+  
+    setformT({
+      ...formT,
+      [e.target.name]: e.target.value,
+      
+    }
+    )
+    localStorage.setItem("datasl", JSON.stringify(formT.sl));
+    
+  };
+  const onSubmit = e => {
+    e.preventDefault();
+    // createBike(formData);
+
+  };
+  const slTemp=JSON.parse(localStorage.getItem("datasl"))
+  console.log("test", slTemp)
   return (
     <Fragment>
       <div className="banner-quangcao15"></div>
-
       <div
         className="ui justified container"
         style={{
@@ -24,10 +50,58 @@ const AddPost = () => {
             </Grid.Column>
             <Grid.Column width={6}>
               <h3>Điện Thoại</h3>
-              <Link to="/add-mobile">
+              <text onClick={() => setOpened(true)}>
                 <div className="mobile-gif"></div>
-              </Link>
+              </text>
+              <Modal size="mini"
+              open={opened}
+              onClose={() => setOpened(false)}
+              closeOnDimmerClick={false}
+              closeOnEscape={false}
+              closeOnClickOutside={false}
+              disableEnforceFocus
+        
+          >
+              <Header icon>
+                  <Icon name='exclamation triangle' color="red" />
+                  Cảnh báo
+              </Header>
+              <Modal.Content>
+                  <p >
+                    <form>
+                  <label>
+                    
+                      <i className="audio description icon"></i> Bạn đăng bao nhiêu tin
+                      <sup
+                      style={{color:"red" ,fontSize:"20px"}}
+                       color="red"> *</sup>
+                    </label>
+                    <div className="ui input">
+                    <NumberFormat
+                        value={formT.sl}
+                        name="sl"
+                        onChange={e => onChange(e)}
+                        type="text"
+                        placeholder={"Nhập số lượng"}
+                 
+                      />
+                    </div>
+                    </form>
+                  {/* </div> */}
+                  </p>
+              </Modal.Content>
+              <Modal.Actions>
+                  <Button color='green' inverted href="http://localhost:3000/add-bike" onClick={() => setOpened(false)}>
+                      <Icon name='checkmark' /> Tiếp tục thanh toán
+                  </Button>
+                  <Button  color='red' inverted href="http://localhost:3000/addpost" onClick={() => setOpened(false)}>
+                      <Icon name='remove' />
 
+                      Hủy
+                  </Button>
+
+              </Modal.Actions>
+          </Modal>
               <Grid>
                 <Grid.Row>
                   <GridColumn width={8}>

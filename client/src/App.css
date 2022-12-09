@@ -307,6 +307,11 @@
 .heo{
   background-color: blueviolet;
 }
+.iconQlt{
+  background: url("img/icon_qlt.jpg")no-repeat center center/cover ;
+  height: 50px;
+  width: 50px;
+}
 .date{
   margin-left: 100px;
 }
