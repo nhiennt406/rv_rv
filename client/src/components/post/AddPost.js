@@ -94,7 +94,7 @@ const AddPost = () => {
                   <Button color='green' inverted href="http://localhost:3000/add-bike" onClick={() => setOpened(false)}>
                       <Icon name='checkmark' /> Tiếp tục thanh toán
                   </Button>
-                  <Button  color='red' inverted href="http://localhost:3000/addpost" onClick={() => setOpened(false)}>
+                  <Button  color='red' inverted  onClick={() => setOpened(false)}>
                       <Icon name='remove' />
 
                       Hủy

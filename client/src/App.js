@@ -34,7 +34,8 @@ import WorkDetail from "./components/work/WorkDetail";
 import Work from "./components/work/Work";
 //admin
 // import Dashboard from "";"
-
+import BikeIt from "./components/post/BikeIt";
+import Tao from "./components/post/testTab"
 //Redux
 import { Provider } from "react-redux";
 import { loadUser } from "./actions/auth";
@@ -91,6 +92,8 @@ const App = () => {
               <PrivateRoute exact path="/pay" component={StripeContainer} />
               <PrivateRoute exact path="/form" component={PaymentForm} />
               <PrivateRoute exact path="/manager-post" component={QLTin} />
+              <PrivateRoute exact path="/test" component={Tao} />
+              
               {/* <PrivateRoute exact path="/payment" component={PaymentContent} /> */}
 
               {/* work */}

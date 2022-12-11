@@ -33,11 +33,20 @@ const CARD_OPTIONS = {
 }
 const kq = JSON.parse(localStorage.getItem("datane"));
 const kq2 = JSON.parse(localStorage.getItem("datane2"));
+let SLbai = JSON.parse(localStorage.getItem("datasl"))
+let tien=0;
+const dataArr = [];
+for (let i = 1; i <= SLbai; i += 1) {
+    dataArr[i]=JSON.parse(localStorage.getItem(`tab${i}`))
+console.log("data",dataArr);
+ tien=parseInt(tien+=dataArr[i].cost,10)
+console.log("tinh tien ne:", tien)
+}
 // const kq = JSON.parse(localStorage.getItem("datane"));
 // console.log("kq", kq);
 // console.log("kq2", kq2);
 // const priceTemp = kq.price;
-const tien = parseInt(kq.cost + kq2.cost2, 10);
+// const tien = parseInt(kq.cost + kq2.cost2, 10);
 
 export default function PaymentForm() {
     const [success, setSuccess] = useState(false)
@@ -50,9 +59,6 @@ export default function PaymentForm() {
         }
     };
     // console.log("data đó bà :", priceTemp);
-    console.log(kq);
-    console.log(tien);
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -60,8 +66,6 @@ export default function PaymentForm() {
             card: elements.getElement(CardElement)
             // payment: elements.getElement(PaymentElement)
         })
-
-
         if (!error) {
             try {
                 const { id } = paymentMethod
@@ -74,33 +78,30 @@ export default function PaymentForm() {
                     setSuccess(true)
                     console.log(`response`);
                     console.log(response)
+                    for(let i=1;i<=SLbai;i++){
                     try {
-                        const res = await axios.post(`http://localhost:5000/api/bikes`, kq, config)
-                        const res2 = await axios.post(`http://localhost:5000/api/bikes`, kq, config)
-
+                        const res = await axios.post(`http://localhost:5000/api/bikes`, dataArr[i], config)
+                        // const res2 = await axios.post(`http://localhost:5000/api/bikes`, dataArr[i], config)
                     }
-
                     catch {
-                        try { const res = await axios.post("http://localhost:5000/api/posts", kq, config) }
+                        try { const res = await axios.post("http://localhost:5000/api/posts", dataArr[i], config) }
                         catch {
-                            try { const res = await axios.post("http://localhost:5000/api/fashions", kq, config) }
+                            try { const res = await axios.post("http://localhost:5000/api/fashions",dataArr[i], config) }
                             catch {
                                 try {
-                                    const res = await axios.post(`http://localhost:5000/api/pets`, kq, config)
+                                    const res = await axios.post(`http://localhost:5000/api/pets`, dataArr[i], config)
                                 } catch {
                                     try {
-                                        const res = await axios.post(`http://localhost:5000/api/works`, kq, config)
+                                        const res = await axios.post(`http://localhost:5000/api/works`, dataArr[i], config)
                                     } catch {
                                         console.log("thêm dô chớ sao")
                                     }
                                 }
-                                // }
-                                // }
                             }
                         }
                     }
                 }
-
+            }
             } catch (error) {
                 console.log("Error", error)
             }
@@ -115,16 +116,16 @@ export default function PaymentForm() {
                 <div>
                     <form onSubmit={handleSubmit}>
                         <center>THÔNG TIN HÓA ĐƠN </center>
-                        <br/>
-                        Khách hàng: NT Nhiên <br/>
-                        Email: NhienB1805799@student.ctu.edu.vn<br/>
+                        <br />
+                        Khách hàng: NT Nhiên <br />
+                        Email: NhienB1805799@student.ctu.edu.vn<br />
                         Tổng tiền cần thanh Toán:   {kq.cost}<br />
-                        Vui lòng nhập đầy đủ thông tin vào thông tin thanh toán để quá trình đăng bài hoàn tất!<br/>
-                      
-                      
+                        Vui lòng nhập đầy đủ thông tin vào thông tin thanh toán để quá trình đăng bài hoàn tất!<br />
+
+
                         <fieldset className="FormGroup">
-                            <center>THÔNG TIN TÀI KHOẢN THANH TOÁN 
-                                
+                            <center>THÔNG TIN TÀI KHOẢN THANH TOÁN
+
                             </center>
                             <div className="FormRow">
 
