@@ -1,132 +1,183 @@
-// import React from 'react'
-// import { Grid, Image, Item } from 'semantic-ui-react'
-// import Mobile from './Mobile'
-// const paragraph = <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-// const Items = () => (
+
+// import React, { useEffect, useState } from "react";
+// import { connect } from "react-redux";
+// import Spinner from "../layout/Spinner";
+// import { getPost } from "../../actions/post";
+// import MobileItem from "./MobileItem";
+// import FashionItem from "../fashion/FashionItem"
+// import { Grid, GridColumn } from "semantic-ui-react";
+// import axios from "axios";
+// import{getFashion }  from "../../actions/fashion"
+//   const Fashion = ({ getFashion, fashion: {fashions }}) => {
+
+//     useEffect(() => {
+//       getFashion();
+//       console.log('fashions')
+//       console.log(fashions)
+//     }, [getFashion]);
+
+//   const [DataListFS, setDataListFS] = useState([]);
+//   useEffect(() => {
+//     axios(`http://localhost:5000/api/fashions`).then(
+//       ({ data }) => setDataListFS(data)
+//     );
+//   }, []);
+//   return (
 //     <div>
+//       {/* <div className="mobile-banner"></div> */}
 
-//         <Grid>
-//             <Grid.Row>
-//                 <Grid.Column width={8}>
-//                     <Item>
-//                         {/* <Item.Image size='tiny' src='https://react.semantic-ui.com/images/wireframe/image.png' /> */}
-// <Mobile/>
-//                         <Item.Content>
-//                             <Item.Header>Arrowhead Valley Camp</Item.Header>
-//                             <Item.Meta>
-//                                 <span className='price'>$1200</span>
-//                                 <span className='stay'>1 Month</span>
-//                             </Item.Meta>
-//                             <Item.Description>{paragraph}</Item.Description>
-//                         </Item.Content>
-//                     </Item>
-//                 </Grid.Column>
-//                 <Grid.Column width={8}>
-//                     <Item>
-//                         <Item.Image size='tiny' src='https://react.semantic-ui.com/images/wireframe/image.png' />
+//       <h1
+//         className="ui header"
+//         style={{
+//           paddingBottom: "20px",
+//           textAlign: "center"
+//         }}
+//       >
+//         TIN MỚI ĐĂNG
+//       </h1>
+//       <div style={{ margin: " 0px 30px" }}>
+//         {DataListFS.map((item)=>{
+//           // const (_id)=item
+//           return (
+//         <Grid colums={3}>         
+//             <GridColumn with={8}>
 
-//                         <Item.Content>
-//                             <Item.Header>Arrowhead Valley Camp</Item.Header>
-//                             <Item.Meta>
-//                                 <span className='price'>$1200</span>
-//                                 <span className='stay'>1 Month</span>
-//                             </Item.Meta>
-//                             <Item.Description>{paragraph}</Item.Description>
-//                         </Item.Content>
-//                     </Item>
-//                 </Grid.Column>
-//             </Grid.Row>
+//                   {fashions && fashions.length > 0
+//                 ? fashions.map((fashion) => (
+//                   <FashionItem key={fashion._id} fashion={fashion} />
+//                 ))
+//                 : null}
 
-
-//         </Grid>
-
+//               {/* <FashionItem  key = {item._id} fashion={item}/> */}
+//             </GridColumn>
+//             <GridColumn with={8}>
+//               hehe
+//             </GridColumn>
+//             <GridColumn with={8}>
+//               hihi
+//             </GridColumn>
+//         </Grid>)})}
+//         {/* <Grid>
+//           <GridColumn >as </GridColumn>
+//         </Grid> */}
+//       </div>
 //     </div>
-// )
-// export default Items
+//   );
+//           }
+// const mapStateToProps = state => ({
+//   fashion :state.fashions
+// });
+// export default connect(mapStateToProps, {getFashion })(Fashion);
 
-
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
-import { getPost } from "../../actions/post";
-import MobileItem from "./MobileItem";
-import { Grid } from "semantic-ui-react";
-const Mobile = ({ getPost, post: { posts, loading } }) => {
-  useEffect(() => {
-    getPost();
-  }, [getPost]);
-  return loading ? (
-    <Spinner />
-  ) : 
-  (
-    <div>
-      {/* <div className="mobile-banner"></div> */}
+import axios from "axios";
+import { getFashion } from "../../actions/fashion";
+import BikeItem from "../bike/BikeItem";
+import { getBike } from "../../actions/bike";
+import FashionItem from "../fashion/FashionItem";
+import PetItem from "../pet/PetItem"
+import WorkItem from "../work/WorkItem"
+import { Grid, List } from "semantic-ui-react";
 
-      <h1
+const Fashion = ({ getFashion, fashion: { fashions } }) => {
+
+  useEffect(() => {
+    getFashion();
+    // console.log('fashions')
+    // console.log(fashions)
+  }, [getFashion]);
+  const [DataListBike, setDataListBike] = useState([]);
+  const [DataListPet, setDataListPet] = useState([]);
+  const [DataListWork, setDataListWork] = useState([]);
+  useEffect(() => {
+    axios(`http://localhost:5000/api/bikes`).then(
+      ({ data }) => setDataListBike(data)
+    );
+    axios(`http://localhost:5000/api/pets`).then(
+      ({ data }) => setDataListPet(data)
+    );
+    axios(`http://localhost:5000/api/works`).then(
+      ({ data }) => setDataListWork(data)
+    );
+  }, []);
+  return (
+    //   <Spinner />
+    // ):(
+    <div>
+
+      {/* <div className="fashion-banner"></div> */}
+
+      {/* <h1
         className="ui header"
         style={{
           paddingBottom: "20px",
           textAlign: "center"
         }}
       >
-       TIN MỚI ĐĂNG
-      </h1>
+        Thời Trang
+      </h1> */}
       <div style={{ margin: " 0px 30px" }}>
         <Grid>
           <Grid.Row>
             {/* <Grid.Column width={3}>
-              <div style={{ margin: " 10px 20px" }}>
-                <h4>Các danh mục khác</h4>
-                <div className="ui vertical menu ">
-                  <a className="item" href="!#">
-                    Dịch vụ
-                  </a>
-                  <a className="item" href="!#">
-                    Thú cưng
-                  </a>
-                  <a className="item" href="!#">
-                    Việc làm
-                  </a>
-                  <a className="item" href="!#">
-                    Thời trang
-                  </a>
-                  <a className="item" href="!#">
-                    Xe cộ
-                  </a>
-                  <a className="item" href="!#"></a>
-                  <div className="item">
-                    <div className="ui icon input">
-                      <input type="text" placeholder="Search mail..." />
-                      <i aria-hidden="true" className="search icon"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               <div className="banner-doc2"></div>
             </Grid.Column> */}
-            <Grid.Column width={8}>
-              {posts.map(post => (
-                <MobileItem key={post._id} post={post} />
-              ))}
-            </Grid.Column>
-            <Grid.Column width={8}>
-              {posts.map(post => (
-                <MobileItem key={post._id} post={post} />
-              ))}
-            </Grid.Column>
+            <Grid.Column width={3}>
 
-            {/* <Grid.Column width={3}>
-              <div className="banner-doc"></div>
-              <div className="banner-doc"></div>
-            </Grid.Column> */}
+            </Grid.Column>
+            <Grid.Column width={6}>
+
+              {fashions && fashions.length > 0
+                ? fashions.map((fashion) => (
+                  <FashionItem key={fashion._id} fashion={fashion} />
+                ))
+                : null}
+                 <Grid.Column width={6}>
+                {DataListPet && DataListPet.length > 0
+
+                  ? DataListPet.map((pet) => (
+
+                    <PetItem key={pet._id} pet={pet} />
+                  ))
+                  : null}
+                   </Grid.Column>
+                   <Grid.Column width={6}>
+                  {DataListWork && DataListWork.length > 0
+
+                    ? DataListWork.map((work) => (
+
+                      <WorkItem key={work._id} work={work} />
+                    ))
+                    : null}
+                </Grid.Column>
+                </Grid.Column>
+             
+               
+             
+              <Grid.Column width={6}>
+                {DataListBike && DataListBike.length > 0
+
+                  ? DataListBike.map((bike) => (
+
+                    <BikeItem key={bike._id} bike={bike} />
+                  ))
+                  : null}
+
+              </Grid.Column>
+
           </Grid.Row>
         </Grid>
       </div>
+
     </div>
+
   );
 };
+
 const mapStateToProps = state => ({
-  post: state.post
+  fashion: state.fashion
 });
-export default connect(mapStateToProps, { getPost })(Mobile);
+
+export default connect(mapStateToProps, { getFashion })(Fashion);

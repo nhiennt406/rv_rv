@@ -21,7 +21,7 @@ const Mobile = ({ getPost, post: { posts, loading } }) => {
           textAlign: "center"
         }}
       >
-        Điện thoại giá rẻ 2019
+        Điện thoại giá rẻ 2022
       </h1>
       <div style={{ margin: " 0px 30px" }}>
         <Grid>

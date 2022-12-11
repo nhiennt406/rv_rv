@@ -4,13 +4,12 @@ import { Grid, GridColumn, Input, Button, Container, Image } from "semantic-ui-r
 import QuangCao from "../../img/mobilesinglebannergif.gif";
 import QuangCao7 from "../../img/quangcao7.png";
 import QuangCao8 from "../../img/gioithieu.jpg";
-import Items from "../pages/NewPost";
+// import Items from "../pages/NewPost";
+import New from "../pages/NewPost"
 // import bg from "../../img/ad1.jpg";
 export default function Homepage() {
   return (
-    // <Container></Container>
-    <div>
-      {/* className="main"> */}
+
       <Container size=''>
       <div id="slider" style={{  }}>
         <figure>
@@ -21,7 +20,6 @@ export default function Homepage() {
       </div>
       
       <div className="div-DM">
-    
       <h1
         className="ui header"
         style={{
@@ -34,9 +32,7 @@ export default function Homepage() {
       </h1>
      
       <Grid 
-        // relaxed
-        // padded
-        columns={8}
+        columns={7}
       >
       
         <Grid.Column />
@@ -64,27 +60,23 @@ export default function Homepage() {
           </Link> </Grid.Column>
         <Grid.Column>
           <h3>Tuyển Dụng</h3>
-          <Link to="/hr">
+          <Link to="/work">
             <div className="job-gif"></div>
           </Link>   </Grid.Column>
-
+{/* 
         <Grid.Column>
           <h3>Tuyển Dụng</h3>
           <Link to="/hr">
             <div className="job-gif"></div>
-          </Link>   </Grid.Column>
+          </Link>   </Grid.Column> */}
       </Grid>
       </div>
       <span></span><br/>
       <div className="div-NewPost"> 
       
-        <Items/>
+       <New/>
       </div>
       </Container>
-    </div>
-
-
-
 
   );
 }

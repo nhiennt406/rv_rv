@@ -5,29 +5,29 @@ import NumberFormat from "react-number-format";
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 const AddPost = () => {
   const [opened, setOpened] = useState(false);
+  const [openedBike, setOpenedBike] = useState(false);
+  const [openedFS, setOpenedFS] = useState(false);
+  const [openedTC, setOpenedTC] = useState(false);
+  const [openedTD, setOpenedTD] = useState(false);
   // const sl=0;
-  const [formT, setformT]= useState(
-   { sl:0}
-    );
-  const {sl}=formT;
+  const [formT, setformT] = useState(
+    { sl: 0 }
+  );
+  const { sl } = formT;
   const onChange = e => {
-    
-  
     setformT({
       ...formT,
       [e.target.name]: e.target.value,
-      
     }
     )
     localStorage.setItem("datasl", JSON.stringify(formT.sl));
-    
   };
   const onSubmit = e => {
     e.preventDefault();
     // createBike(formData);
 
   };
-  const slTemp=JSON.parse(localStorage.getItem("datasl"))
+  const slTemp = JSON.parse(localStorage.getItem("datasl"))
   console.log("test", slTemp)
   return (
     <Fragment>
@@ -54,67 +54,71 @@ const AddPost = () => {
                 <div className="mobile-gif"></div>
               </text>
               <Modal size="mini"
-              open={opened}
-              onClose={() => setOpened(false)}
-              closeOnDimmerClick={false}
-              closeOnEscape={false}
-              closeOnClickOutside={false}
-              disableEnforceFocus
-        
-          >
-              <Header icon>
+                open={opened}
+                onClose={() => setOpened(false)}
+                closeOnDimmerClick={false}
+                closeOnEscape={false}
+                closeOnClickOutside={false}
+                disableEnforceFocus
+
+              >
+                <Header icon>
                   <Icon name='exclamation triangle' color="red" />
                   Cảnh báo
-              </Header>
-              <Modal.Content>
+                </Header>
+                <Modal.Content>
                   <p >
                     <form>
-                  <label>
-                    
-                      <i className="audio description icon"></i> Bạn đăng bao nhiêu tin
-                      <sup
-                      style={{color:"red" ,fontSize:"20px"}}
-                       color="red"> *</sup>
-                    </label>
-                    <div className="ui input">
-                    <NumberFormat
-                        value={formT.sl}
-                        name="sl"
-                        onChange={e => onChange(e)}
-                        type="text"
-                        placeholder={"Nhập số lượng"}
-                 
-                      />
-                    </div>
+                      <label>
+
+                        <i className="audio description icon"></i> Bạn đăng bao nhiêu tin
+                        <sup
+                          style={{ color: "red", fontSize: "20px" }}
+                          color="red"> *</sup>
+                      </label>
+                      <div className="ui input">
+                        <NumberFormat
+                          value={formT.sl}
+                          name="sl"
+                          onChange={e => onChange(e)}
+                          type="text"
+                          placeholder={"Nhập số lượng"}
+
+                        />
+                      </div>
                     </form>
-                  {/* </div> */}
+                    {/* </div> */}
                   </p>
-              </Modal.Content>
-              <Modal.Actions>
-                  <Button color='green' inverted href="http://localhost:3000/add-bike" onClick={() => setOpened(false)}>
-                      <Icon name='checkmark' /> Tiếp tục thanh toán
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button color='green' inverted href="http://localhost:3000/add-mobile" onClick={() => setOpened(false)}>
+                    <Icon name='checkmark' /> Tiếp tục thanh toán
                   </Button>
-                  <Button  color='red' inverted  onClick={() => setOpened(false)}>
-                      <Icon name='remove' />
+                  <Button color='red' inverted onClick={() => setOpened(false)}>
+                    <Icon name='remove' />
 
-                      Hủy
+                    Hủy
                   </Button>
 
-              </Modal.Actions>
-          </Modal>
+                </Modal.Actions>
+              </Modal>
+
               <Grid>
                 <Grid.Row>
                   <GridColumn width={8}>
-                    <h3>Thời Trang</h3>
-                    <Link to="/addfashion">
+                    <h3  >Thời Trang</h3>
+                    <a onClick={() => setOpenedFS(true)}>
                       <div className="fashion-gif"></div>
-                    </Link>
+                    </a>
+
+
                   </GridColumn>
+
                   <GridColumn width={8}>
-                    <h3>Thú Cưng</h3>
-                    <Link to="/addpet">
+                    <h3 >Thú Cưng</h3>
+                    <a onClick={() => setOpenedTC(true)}>
                       <div className="dog-gif"></div>
-                    </Link>{" "}
+                    </a>
                   </GridColumn>
                 </Grid.Row>
               </Grid>
@@ -122,13 +126,13 @@ const AddPost = () => {
 
             <Grid.Column width={3}>
               <h3>Xe cộ</h3>
-              <Link to="/add-bike">
+              <a onClick={() => setOpenedBike(true)}>
                 <div className="bike-gif"></div>
-              </Link>
+              </a>
               <h3>Tuyển Dụng</h3>
-              <Link to="/addwork">
+              <a onClick={() => setOpenedTD(true)}>
                 <div className="job-gif"></div>
-              </Link>
+              </a>
             </Grid.Column>
 
             <Grid.Column width={3}>
@@ -177,7 +181,204 @@ const AddPost = () => {
           </Link>
         </Grid>
       </div>
+      <Modal size="mini"
+        open={openedBike}
+        onClose={() => setOpened(false)}
+        closeOnDimmerClick={false}
+        closeOnEscape={false}
+        closeOnClickOutside={false}
+        disableEnforceFocus
+
+      >
+        <Header icon>
+          <Icon name='exclamation triangle' color="red" />
+          Cảnh báo
+        </Header>
+        <Modal.Content>
+          <p >
+            <form>
+              <label>
+
+                <i className="audio description icon"></i> Bạn đăng bao nhiêu tin
+                <sup
+                  style={{ color: "red", fontSize: "20px" }}
+                  color="red"> *</sup>
+              </label>
+              <div className="ui input">
+                <NumberFormat
+                  value={formT.sl}
+                  name="sl"
+                  onChange={e => onChange(e)}
+                  type="text"
+                  placeholder={"Nhập số lượng"}
+
+                />
+              </div>
+            </form>
+            {/* </div> */}
+          </p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button color='green' inverted href="http://localhost:3000/add-bike" onClick={() => setOpenedBike(false)}>
+            <Icon name='checkmark' /> Tiếp tục thanh toán
+          </Button>
+          <Button color='red' inverted onClick={() => setOpenedBike(false)}>
+            <Icon name='remove' />
+
+            Hủy
+          </Button>
+
+        </Modal.Actions>
+      </Modal>
+      <Modal size="mini"
+        open={openedFS}
+        onClose={() => setOpened(false)}
+        closeOnDimmerClick={false}
+        closeOnEscape={false}
+        closeOnClickOutside={false}
+        disableEnforceFocus
+
+      >
+        <Header icon>
+          <Icon name='exclamation triangle' color="red" />
+          Cảnh báo
+        </Header>
+        <Modal.Content>
+          <p >
+            <form>
+              <label>
+
+                <i className="audio description icon"></i> Bạn đăng bao nhiêu tin
+                <sup
+                  style={{ color: "red", fontSize: "20px" }}
+                  color="red"> *</sup>
+              </label>
+              <div className="ui input">
+                <NumberFormat
+                  value={formT.sl}
+                  name="sl"
+                  onChange={e => onChange(e)}
+                  type="text"
+                  placeholder={"Nhập số lượng"}
+
+                />
+              </div>
+            </form>
+            {/* </div> */}
+          </p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button color='green' inverted href="http://localhost:3000/addfashion" onClick={() => setOpenedFS(false)}>
+            <Icon name='checkmark' /> Tiếp tục thanh toán
+          </Button>
+          <Button color='red' inverted onClick={() => setOpenedFS(false)}>
+            <Icon name='remove' />
+
+            Hủy
+          </Button>
+
+        </Modal.Actions>
+      </Modal>
+      <Modal size="mini"
+        open={openedTC}
+        onClose={() => setOpened(false)}
+        closeOnDimmerClick={false}
+        closeOnEscape={false}
+        closeOnClickOutside={false}
+        disableEnforceFocus
+
+      >
+        <Header icon>
+          <Icon name='exclamation triangle' color="red" />
+          Cảnh báo
+        </Header>
+        <Modal.Content>
+          <p >
+            <form>
+              <label>
+
+                <i className="audio description icon"></i> Bạn đăng bao nhiêu tin
+                <sup
+                  style={{ color: "red", fontSize: "20px" }}
+                  color="red"> *</sup>
+              </label>
+              <div className="ui input">
+                <NumberFormat
+                  value={formT.sl}
+                  name="sl"
+                  onChange={e => onChange(e)}
+                  type="text"
+                  placeholder={"Nhập số lượng"}
+
+                />
+              </div>
+            </form>
+            {/* </div> */}
+          </p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button color='green' inverted href="http://localhost:3000/addpet" onClick={() => setOpenedTC(false)}>
+            <Icon name='checkmark' /> Tiếp tục thanh toán
+          </Button>
+          <Button color='red' inverted onClick={() => setOpenedTC(false)}>
+            <Icon name='remove' />
+
+            Hủy
+          </Button>
+
+        </Modal.Actions>
+      </Modal>
+      <Modal size="mini"
+        open={openedTD}
+        onClose={() => setOpened(false)}
+        closeOnDimmerClick={false}
+        closeOnEscape={false}
+        closeOnClickOutside={false}
+        disableEnforceFocus
+
+      >
+        <Header icon>
+          <Icon name='exclamation triangle' color="red" />
+          Cảnh báo
+        </Header>
+        <Modal.Content>
+          <p >
+            <form>
+              <label>
+
+                <i className="audio description icon"></i> Bạn đăng bao nhiêu tin
+                <sup
+                  style={{ color: "red", fontSize: "20px" }}
+                  color="red"> *</sup>
+              </label>
+              <div className="ui input">
+                <NumberFormat
+                  value={formT.sl}
+                  name="sl"
+                  onChange={e => onChange(e)}
+                  type="text"
+                  placeholder={"Nhập số lượng"}
+
+                />
+              </div>
+            </form>
+            {/* </div> */}
+          </p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button color='green' inverted href="http://localhost:3000/addwork" onClick={() => setOpenedTD(false)}>
+            <Icon name='checkmark' /> Đăng Tin
+          </Button>
+          <Button color='red' inverted onClick={() => setOpenedTD(false)}>
+            <Icon name='remove' />
+
+            Hủy
+          </Button>
+
+        </Modal.Actions>
+      </Modal>
     </Fragment>
+
   );
 };
 export default AddPost;

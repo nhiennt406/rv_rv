@@ -42,7 +42,7 @@ console.log("data",dataArr);
  tien=parseInt(tien+=dataArr[i].cost,10)
 console.log("tinh tien ne:", tien)
 }
-// const kq = JSON.parse(localStorage.getItem("datane"));
+const kqTemp = JSON.parse(localStorage.getItem("datane"));
 // console.log("kq", kq);
 // console.log("kq2", kq2);
 // const priceTemp = kq.price;
@@ -84,7 +84,7 @@ export default function PaymentForm() {
                         // const res2 = await axios.post(`http://localhost:5000/api/bikes`, dataArr[i], config)
                     }
                     catch {
-                        try { const res = await axios.post("http://localhost:5000/api/posts", dataArr[i], config) }
+                        try { const res = await axios.post("http://localhost:5000/api/posts",dataArr[i], config) }
                         catch {
                             try { const res = await axios.post("http://localhost:5000/api/fashions",dataArr[i], config) }
                             catch {

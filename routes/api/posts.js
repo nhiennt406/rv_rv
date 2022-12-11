@@ -28,9 +28,7 @@ router.post(
       check("description", "Description is required")
         .not()
         .isEmpty(),
-      check("brand", "Brand is required")
-        .not()
-        .isEmpty(),
+     
     ]
   ],
 
@@ -53,7 +51,7 @@ router.post(
         address: req.body.address,
         description: req.body.description,
         name: user.name,
-        brand: user.body.brand,
+     
         avatar: user.avatar,
         user: req.user.id,
         status: "Chưa duyệt"

@@ -39,14 +39,14 @@ const BikeItem = ({
             <Link to={`/bike/${_id}`} className="ui mini primary basic button">
               Xem chi tiết
             </Link>
-            {!auth.loading && user === auth.user._id && (
+            {/* {!auth.loading && user === auth.user._id && (
               <Link
                 onClick={e => deleteBike(_id)}
                 className="ui mini red basic button"
               >
                 Xóa bài viết
               </Link>
-            )}
+            )} */}
           </div>
         </div>
       </div>

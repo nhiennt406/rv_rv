@@ -45,7 +45,7 @@ const PostSchema = new Schema({
   },
   brand: {
     type: String,
-    required: true
+    // required: true
   },
   name: {
     type: String

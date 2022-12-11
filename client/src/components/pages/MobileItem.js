@@ -10,6 +10,7 @@ const MobileItem = ({
   removeLike,
   post: { _id, text, name, user, date, img, price }
 }) => {
+  
   return (
     <Fragment>
       <div className="ui items">
@@ -44,14 +45,14 @@ const MobileItem = ({
             >
               Xem chi tiết
             </Link>
-            {!auth.loading && user === auth.user._id && (
+            {/* {!auth.loading && user === auth.user._id && (
               <Link
                 onClick={e => deletePost(_id)}
                 className="ui mini red basic button"
               >
                 Xóa bài viết
               </Link>
-            )}
+            )} */}
           </div>
         </div>
       </div>
