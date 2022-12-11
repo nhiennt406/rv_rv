@@ -40,14 +40,14 @@ const WorkItem = ({
             <Link to={`/work/${_id}`} className="ui mini primary basic button">
               Xem chi tiết
             </Link>
-            {!auth.loading && user === auth.user._id && (
+            {/* {!auth.loading && user === auth.user._id && (
               <Link
                 onClick={e => deleteWork(_id)}
                 className="ui mini red basic button"
               >
                 Xóa bài viết
               </Link>
-            )}
+            )} */}
           </div>
         </div>
       </div>

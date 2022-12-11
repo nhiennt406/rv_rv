@@ -221,7 +221,7 @@ const AddFashion = (i
                     </label>
                     <div className="ui input">
                       <TextArea
-                        value={size}
+                        value={formData.size}
                         name="size"
                         onChange={e => onChange(e)}
                         type="text"

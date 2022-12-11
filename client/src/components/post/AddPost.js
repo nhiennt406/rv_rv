@@ -11,7 +11,7 @@ const AddPost = () => {
   const [openedTD, setOpenedTD] = useState(false);
   // const sl=0;
   const [formT, setformT] = useState(
-    { sl: 0 }
+    { sl: 1 }
   );
   const { sl } = formT;
   const onChange = e => {

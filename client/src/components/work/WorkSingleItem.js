@@ -46,7 +46,7 @@ const WorkSingleItem = ({
             <h3
               style={{ color: "red", margin: "10px 0px", fontWeight: "bold" }}
             >
-              Giá bán: {price} VNĐ
+              
             </h3>
 
             <div className="ui divider"></div>

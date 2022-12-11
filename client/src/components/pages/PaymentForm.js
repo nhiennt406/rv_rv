@@ -3,7 +3,7 @@ import axios from "axios"
 import React, { useState } from 'react'
 import { Elements } from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
-
+import { Link } from "react-router-dom"
 import { createBike } from "../../actions/bike";
 import { Button, Container, Header, Icon, Modal } from 'semantic-ui-react'
 import BikeItem from '../bike/BikeItem'
@@ -84,10 +84,11 @@ export default function PaymentForm() {
                         // const res2 = await axios.post(`http://localhost:5000/api/bikes`, dataArr[i], config)
                     }
                     catch {
+                        try { const res = await axios.post("http://localhost:5000/api/fashions",dataArr[i], config) }
+                        catch {
                         try { const res = await axios.post("http://localhost:5000/api/posts",dataArr[i], config) }
                         catch {
-                            try { const res = await axios.post("http://localhost:5000/api/fashions",dataArr[i], config) }
-                            catch {
+                          
                                 try {
                                     const res = await axios.post(`http://localhost:5000/api/pets`, dataArr[i], config)
                                 } catch {
@@ -110,24 +111,25 @@ export default function PaymentForm() {
         }
     }
     return (
-        <><div style={{ width: "550px" }}>
+        <><div>
             {/* {kq.price} */}
             {!success ?
                 <div>
                     <form onSubmit={handleSubmit}>
                         <center>THÔNG TIN HÓA ĐƠN </center>
-                        <br />
-                        Khách hàng: NT Nhiên <br />
-                        Email: NhienB1805799@student.ctu.edu.vn<br />
-                        Tổng tiền cần thanh Toán:   {kq.cost}<br />
+                        <br /><br/>
+                        
+                        Khách hàng: NT Nhiên <br /><br/>
+                        Email: NhienB1805799@student.ctu.edu.vn<br /><br/>
+                        Tổng tiền cần thanh Toán:   {tien}<br /><br/>
                         Vui lòng nhập đầy đủ thông tin vào thông tin thanh toán để quá trình đăng bài hoàn tất!<br />
-
+                        <br/>
 
                         <fieldset className="FormGroup">
                             <center>THÔNG TIN TÀI KHOẢN THANH TOÁN
 
                             </center>
-                            <div className="FormRow">
+                            <div className="FormRow"  >
 
                                 <CardElement options={CARD_OPTIONS} />
                                 {/* <PaymentElement options={CARD_OPTIONS}/> */}
@@ -177,7 +179,23 @@ export default function PaymentForm() {
 
                 :
                 <div>
-                    <h2>Thanh Toán Thành Công rồi đó bà dà</h2>
+                    {/* <image src={`https://static.vecteezy.com/system/resources/previews/002/743/514/original/green-check-mark-icon-in-a-circle-free-vector.jpg` }/> */}
+                   
+                   <center> <h2>Thanh Toán Thành Công
+                        </h2>
+                        <img src="https://static.vecteezy.com/system/resources/previews/002/743/514/original/green-check-mark-icon-in-a-circle-free-vector.jpg" width={200}   left={200}/>
+                       
+                       <p>
+                        Cảm ơn quý khách đã đăng tin, tin của quý khách sẽ sớm được duyệt, chúc quý khách một ngày tốt lành!
+                        
+                        </p> {/* <Link to={
+                            "/addpost"
+                        }>Tiếp Tục Đăng Tin</Link>
+                         <Link to={
+                            "/addpost"
+                        }>----</Link>
+                        <Link to={"/manager-post"}>Quản Lý Tin</Link> */}
+                        </center>
                 </div>
             }
         </div>
