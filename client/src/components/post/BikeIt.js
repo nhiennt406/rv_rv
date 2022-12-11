@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { withRouter, Link } from "react-router-dom";
 // import { connect } from "react-redux";
+// import * as Yup from "yup";
 import { createBike } from "../../actions/bike";
 import NumberFormat from "react-number-format";
 import ReactFileReader from "react-file-reader";
+
+// import { useFormik } from "formik";
 import { Button, Divider, Grid, ItemExtra, TextArea } from "semantic-ui-react";
 import TextEditor from "./TextEditor";
 import PayBtn from "../pages/PayBtn";
@@ -12,20 +15,6 @@ const BikeIt = (
   i
 ) => {
   const arrayTemp = [];
-  const [formData2, setFormData2] = useState({
-    text2: "",
-    brand2: "",
-    tinhtrang2: "",
-    price2: "",
-    phone2: "",
-    address2: "",
-    description2: "",
-    img2: "",
-    cost2: "",
-    date2: "",
-    costEdit: 5000,
-    status: "Chưa duyệt"
-  });
   const [formData, setFormData] = useState({
     text: "",
     brand: "",
@@ -46,56 +35,24 @@ const BikeIt = (
   const SLbai = JSON.parse(localStorage.getItem("datasl"))
   const [sl, setsl] = useState(Number(SLbai))
   console.log("So luong bai dang",sl);
-
-  //   for(let i=0;i <SLbai;i+=1)
-  //   {
-  //     arr[i]= formData;
-  //     console.log("test",arr[i]);
-  //   }
-
-  // console.log(window.screen.height)
   const onChange = e => {
     if ([e.target.name] == "date1") {
       const costTemp = e.target.value * formData.costEdit;
-
       formData.cost = costTemp;
     }
-    if ([e.target.name] == "date2") {
-      const costTemp = e.target.value * formData2.costEdit;
-
-      formData2.cost2 = costTemp;
-    }
     formData.status = "Chưa duyệt";
-    // arrayTemp.push(formData);
-    localStorage.setItem("datane", JSON.stringify(formData));
-    localStorage.setItem("datane2", JSON.stringify(formData2));
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
 
     });
-    setFormData2({
-      ...formData2,
-      [e.target.name]: e.target.value,
-
-    });
-
+  
     // console.log(formData)
   };
 
   const setLocal = (i) => {
-
-    // console.log("test hihi", (i));
     const kqtemp = JSON.parse(JSON.stringify(i));
-    console.log("hú dè", kqtemp.i);
-    console.log( `tab${kqtemp.i}`);
-    // (localStorage.setItem(`tab${i}`,JSON.stringify (formData))
    (localStorage.setItem(`tab${kqtemp.i}`, JSON.stringify(formData)))
-    // if (i == 2){ (localStorage.setItem(`tab2`, JSON.stringify(formData)))
-  // }
-    // console.log(` tab1${i}`, JSON.parse(localStorage.getItem(`tab1${i}`)));
-    // if (i == 1) console.log(` tab1`, JSON.parse(localStorage.getItem(`tab1`)));
-    // if (i == 2) console.log(` tab2`, JSON.parse(localStorage.getItem(`tab2`)));
   }
   const onSubmit = e => {
     e.preventDefault();
@@ -106,31 +63,18 @@ const BikeIt = (
     setFormData({
       ...formData, img: files.base64
     });
-    // setFormData({...formData, e.target.img: e.target.value})
   };
-  //   const [editorState, setEditorState] = useState(() =>
-  //   EditorState.createEmpty()
-  // );
 
-  // console.log("l", JSON.parse(localStorage.getItem("Tab1")));
+  
   return (
-
     <div>
-      {/* <div className="banner-car"></div> */}
-
-      {/* <h1 className="ui header" style={{ textAlign: "center" }}>
-        Đăng tin xe cộ{" "}
-      </h1> */}
-
       <div
         style={{
           margin: "0px 50px"
         }}
       >
-
         <Grid>
           <Grid.Row>
-            <Grid.Column width={10}>
               <form
                 onSubmit={e => onSubmit(e)}
                 className="ui form">
@@ -173,6 +117,7 @@ const BikeIt = (
                         onChange={e => onChange(e)}
                         type="text"
                         placeholder={formData.text}
+                        required
                       // disabled
                       />
                     </div>
@@ -320,7 +265,7 @@ const BikeIt = (
 
                 {/* <PayBtn BikeItem={formData} /> */}
               </form>
-            </Grid.Column>
+            {/* </Grid.Column> */}
 
 
             {/* </div> */}

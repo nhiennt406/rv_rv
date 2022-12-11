@@ -76,22 +76,16 @@ const AddFashion = (
       ...formData,
       img: files.base64
     });
-    // setFormData({...formData, e.target.img: e.target.value})
-  };
-  //   const [editorState, setEditorState] = useState(() =>
-  //   EditorState.createEmpty()
-  // );
-  // const ngayhethan = setDate(Number(formData.date1)+Number(newDate.getDate()))
-  console.log("date nhập dô", date1)
 
-  // console.log("date13ewqewe:", newDate);
-  // console.log("date:", newDate.getDate());
+  };
+ 
+  console.log("date nhập dô", date1)
   newDate.setDate(newDate.getDate()+Number(date1));
   newDate1.setDate(newDate1.getDate()+2);
   console.log("cộng 2 ",newDate1.toDateString())
-  // console.log("hehe",newDate.toUTCString());
+
   console.log("cộng cái nhập",newDate.toDateString());
-  // console.log("date1+date:", Number(formData.date1)+Number(newDate.getDate()));
+
   return (
     <div>
       <div className="banner-car"></div>
