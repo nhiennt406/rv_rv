@@ -39,7 +39,7 @@ const dataArr = [];
 for (let i = 1; i <= SLbai; i += 1) {
     dataArr[i]=JSON.parse(localStorage.getItem(`tab${i}`))
 console.log("data",dataArr);
- tien=parseInt(tien+=dataArr[i].cost,10)
+ tien=parseInt(tien+=dataArr[i]?.cost,10)
 console.log("tinh tien ne:", tien)
 }
 const kqTemp = JSON.parse(localStorage.getItem("datane"));
@@ -66,18 +66,18 @@ export default function PaymentForm() {
             card: elements.getElement(CardElement)
             // payment: elements.getElement(PaymentElement)
         })
-        if (!error) {
+        // if (!error) {
             try {
-                const { id } = paymentMethod
-                const response = await axios.post("http://localhost:5000/payment", {
-                    id, amount: tien
-                })
+                // const { id } = paymentMethod
+                // const response = await axios.post("http://localhost:5000/payment", {
+                //     id, amount: tien
+                // })
 
-                if (response.data.success) {
+                // if (response.data.success) {
                     console.log("Successful payment")
                     setSuccess(true)
                     console.log(`response`);
-                    console.log(response)
+                    // console.log(response)
                     for(let i=1;i<=SLbai;i++){
                     try {
                         const res = await axios.post(`http://localhost:5000/api/bikes`, dataArr[i], config)
@@ -102,13 +102,13 @@ export default function PaymentForm() {
                         }
                     }
                 }
-            }
+            // }
             } catch (error) {
                 console.log("Error", error)
             }
-        } else {
-            console.log(error.message)
-        }
+        // } else {
+        //     console.log(error.message)
+        // }
     }
     return (
         <><div>

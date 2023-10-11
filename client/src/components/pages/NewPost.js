@@ -144,11 +144,12 @@ const Fashion = ({ getFashion, fashion: { fashions } }) => {
                   : null}
                    </Grid.Column>
                    <Grid.Column width={6}>
-                  {DataListWork && DataListWork.length > 0
+                  {DataListWork && DataListWork.length > 0 
 
                     ? DataListWork.map((work) => (
-
                       <WorkItem key={work._id} work={work} />
+                    // (  {(work.status==="Đã duyệt")?  : null}
+                    
                     ))
                     : null}
                 </Grid.Column>
